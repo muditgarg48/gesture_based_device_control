@@ -1,3 +1,6 @@
+# Virtial Environment name
+virtual_env_name = 'my-project-env'
+
 # My PC had two cameras, back and front, so for front camera, the number was 1
 # Please edit this according to your system for the correct camera device number
 camera_number = 1
