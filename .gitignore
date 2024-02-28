@@ -2,3 +2,6 @@
 my-project-env/
 training_action_data/
 __pycache__/
+
+# Files to exclude
+get-pip.py
