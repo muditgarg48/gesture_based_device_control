@@ -55,7 +55,7 @@ def main():
         elif choice == 3:
             reset_gesture_list()
         elif choice == 9:
-            exit()
+            break
         if input("Continue (Y/N): ").upper() == 'Y':
             continue
         else:
