@@ -1,0 +1,4 @@
+# Folders to exclude
+myenv/
+training_action_data/
+__pycache__/
