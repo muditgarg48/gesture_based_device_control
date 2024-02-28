@@ -15,17 +15,17 @@ def run_command_and_show_output(command):
 
 def issue_success():
     import time
-    time.sleep(0.5)
+    time.sleep(1)
     print("✅")
 
 def issue_warning():
     import time
-    time.sleep(0.5)
+    time.sleep(2)
     print("⚠️")
 
 def issue_failure():
     import time
-    time.sleep(0.5)
+    time.sleep(2)
     print("❌")
 
 def file_exist(file_name):
@@ -53,6 +53,7 @@ def check_python():
     elif result_code == 1:
         issue_failure()
         print("Try reinstalling Python and running this script again")
+        exit()
     else:
         print_weird_behaviour(result_code)
 
@@ -100,7 +101,7 @@ def check_virtual_environment():
     print(f"Checking if {virtual_env_name} virtual environment exists ... ",end='')
     if os.path.isdir(virtual_env_name):
         issue_success()
-        activate_venv()
+        check_status_of_venv()
         install_dependencies()
     else:
         issue_warning()
@@ -123,19 +124,19 @@ def check_status_of_venv():
         issue_warning()
         print(f"Current virtual environment: {sys.base_prefix}")
         activate_venv()
+        return False
     else:
         issue_success()
         print(f"Virtual environment active: {sys.prefix}")
+        return True
 
 def activate_venv():
-    import os
     from global_variables import virtual_env_name
     print(f"Activating {virtual_env_name} to install dependencies, using ",end='')
     command = activate_venv_command()
     print(f" {command} ... ", end='')
     if run_command(command) == 0:
         issue_success()
-        install_dependencies()
     else:
         issue_failure()
         print(f"Sorry couldn't activate the {virtual_env_name} environment to install dependencies")
@@ -144,14 +145,15 @@ def activate_venv():
         exit()
 
 def install_dependencies():
-    print("Installing dependencies from requirements.txt file, this may take a while. ")
-    print("⚠️  Data charges may apply")
-    import time
-    time.sleep(1)
+    print("Installing/Updating dependencies from requirements.txt file, this may take a while. ")
+    print("⚠️  Data charges may apply  ⚠️")
+    print("================================================================")
     if run_command_and_show_output("pip install -r requirements.txt") == 0:
+        print("================================================================")
         print("Installation completed ... ", end='')
         issue_success()
     else:
+        print("================================================================")
         print("Installation interrupted ... ", end='')
         issue_warning()
 
@@ -162,8 +164,10 @@ def main():
     check_venv_package()
     check_virtual_environment()
     command = activate_venv_command()
-    print(f"Setup completed !! Activate the virtual virtual environment using {command} and run the project. ", end='')
+    print("Setup completed !!", end='')
     issue_success()
+    if not check_status_of_venv():
+        print(f"Activate the virtual virtual environment using {command} and run the project !")
     
 if __name__ == '__main__':
     main()

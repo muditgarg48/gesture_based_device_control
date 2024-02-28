@@ -33,7 +33,7 @@ def add_gesture():
     if should_save == 'Y':
         save_gestures_to_file(gestures)
         print("Saved to "+file_name)
-        print("Remember to train the model for this gesture and save the model !!")
+        print("Remember to retrain the model and save the model !!")
     else:
         print("Did not save to the file "+file_name)
 
