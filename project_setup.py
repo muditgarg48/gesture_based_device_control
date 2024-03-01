@@ -86,6 +86,7 @@ def check_python():
     result_code = run_command(["python --version"])
     if result_code == 0:
         issue_success()
+        print_in_yellow("The code does not check but remember to have Python 3.9+ to ensure smooth journey ahead.")
     elif result_code == 1:
         issue_failure()
         print_in_red("The system environment variables could not find 'python' as a internal command.")
