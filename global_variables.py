@@ -1,22 +1,22 @@
 # Virtial Environment name
-virtual_env_name = 'my-project-env'
+VIRTUAL_ENV_NAME = 'my-project-env'
 
 # My PC had two cameras, back and front, so for front camera, the number was 1
 # Please edit this according to your system for the correct camera device number
-camera_number = 1
+CAMERA_NUMBER = 1
 
 # Camera feed related settings
-window_name = 'Webcam feed'
-camera_feed_exit_char = 'q'
+WINDOW_NAME = 'Webcam feed'
+CAMERA_FEED_EXIT_CHAR = 'q'
 
 # Training data related settings
-training_data_folder_name = 'training_action_data'
-number_of_videos_for_each_gesture = 30
-each_video_frame_length = 30
+TRAINING_DATA_FOLDER_NAME = 'training_action_data'
+NUMBER_OF_VIDEOS_FOR_EACH_GESTURE = 30
+EACH_VIDEO_FRAME_LENGTH = 30
 
 # Wait time before every video collection for every action (frame 0 for every video)
-frame_collection_wait_time = 2000 #milliseconds
+FRAME_COLLECTION_WAIT_TIME = 2000 #milliseconds
 
 # Model training related settings
-logger_folder_name = 'logs'
-num_of_epochs = 2000
+LOGGER_FOLDER_NAME = 'logs'
+NUM_OF_EPOCHS = 2000
