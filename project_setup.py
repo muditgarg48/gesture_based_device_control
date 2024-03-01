@@ -158,7 +158,7 @@ def create_virtual_environment():
     import os
     from global_variables import VIRTUAL_ENV_NAME
     print(f"Creating virtual environment named {VIRTUAL_ENV_NAME} ... ",end='')
-    command = f"python -m venv {VIRTUAL_ENV_NAME}"
+    command = f"python -m venv --upgrade {VIRTUAL_ENV_NAME}"
     if run_command([command]) == 0:
         issue_success()
     else:
