@@ -42,7 +42,7 @@ def check_all_packages():
     for package in REQUIRED_PACKAGES:
         package_id = package["id"]
         package_name = package["name"]
-        print(f"{package_name} ... ",end='')
+        print(f"{package_name} [{package_id}] ... ",end='')
         if importlib.util.find_spec(package_id) is not None:
             issue_success()
         else:

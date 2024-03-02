@@ -4,6 +4,8 @@ PYTHON_MAJOR_VERSION_REQ = 3
 PYTHON_MINOR_VERSION_REQ_MIN = 9
 PYTHON_MINOR_VERSION_REQ_MAX = 11
 REQUIRED_PACKAGES = [
+    { "id": "jupyter", "name": "Jupyter" },
+    { "id": "ipykernel", "name": "Python kernel for Jupyter" },
     { "id": "cv2", "name": "OpenCV" },
     { "id": "numpy", "name": "Numpy" },
     { "id": "matplotlib", "name": "Matplotlib" },
