@@ -3,6 +3,15 @@ VIRTUAL_ENV_NAME = 'my-project-env'
 PYTHON_MAJOR_VERSION_REQ = 3
 PYTHON_MINOR_VERSION_REQ_MIN = 9
 PYTHON_MINOR_VERSION_REQ_MAX = 11
+REQUIRED_PACKAGES = [
+    { "id": "cv2", "name": "OpenCV" },
+    { "id": "numpy", "name": "Numpy" },
+    { "id": "matplotlib", "name": "Matplotlib" },
+    { "id": "mediapipe", "name": "Mediapipe" },
+    { "id": "tensorflow", "name": "Tensorflow" },
+    { "id": "keras", "name": "Keras" },
+    { "id": "sklearn", "name": "Scikit Learn" },
+]
 
 # My PC had two cameras, back and front, so for front camera, the number was 1
 # Please edit this according to your system for the correct camera device number
