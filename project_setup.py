@@ -1,5 +1,7 @@
 import os
 import subprocess
+import sys
+from commandline_msg_highlighting import *
 
 # ====================
 # Common functions
@@ -25,21 +27,6 @@ def run_command_and_show_output(commands):
     result_code = proc.wait()
     return result_code
 
-def issue_success():
-    import time
-    time.sleep(1)
-    print("✅")
-
-def issue_warning():
-    import time
-    time.sleep(1)
-    print("⚠️")
-
-def issue_failure():
-    import time
-    time.sleep(2)
-    print("❌")
-
 def file_exist(file_name):
     print(f"Checking {file_name} ... ", end='')
     if os.path.isfile(file_name):
@@ -47,18 +34,6 @@ def file_exist(file_name):
     else:
         issue_failure()
         print_in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")
-
-def print_in_bold(message):
-    print('\033[1m' + message + '\033[0m')
-
-def print_in_italics(message):
-    print('\033[3m' + message + '\033[0m')
-
-def print_in_red(message):
-    print('\033[91m' + message + '\033[0m')
-
-def print_in_yellow(message):
-    print('\033[33m' + message + '\033[0m')
 
 def print_weird_behaviour(result_code):
     print_in_yellow(f"\nWeird result code running the script. Error code {result_code}")
@@ -82,18 +57,17 @@ def warning_for_installing_dependencies():
     print_in_bold("================================================================")
 
 def check_python():
+    from global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
     print("Checking for Python installation ... ", end='')
-    result_code = run_command(["python3 --version"])
-    if result_code == 0:
-        issue_success()
-        print_in_yellow("The code does not check but remember to have Python version between 3.9 and 3.11  to ensure smooth journey ahead.")
-    elif result_code == 1:
+    major_version = sys.version_info[0]
+    minor_version = sys.version_info[1]
+    if (major_version < PYTHON_MAJOR_VERSION_REQ) and (minor_version < PYTHON_MINOR_VERSION_REQ_MIN or minor_version > PYTHON_MINOR_VERSION_REQ_MAX):
         issue_failure()
-        print_in_red("The system environment variables could not find 'python' as a internal command.")
-        print_in_red("Try reinstalling Python and running this script again")
+        print_in_red("System environment variables did not find Python version >=3.9 <=3.11")
+        print_in_italics("Mediapipe requires these python versions to work!")
         exit()
     else:
-        print_weird_behaviour(result_code)
+        issue_success()
 
 def check_pip():
     print("Checking for Pip installation ... ", end='')

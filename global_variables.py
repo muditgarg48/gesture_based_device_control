@@ -1,5 +1,8 @@
-# Virtial Environment name
+# Project related settings
 VIRTUAL_ENV_NAME = 'my-project-env'
+PYTHON_MAJOR_VERSION_REQ = 3
+PYTHON_MINOR_VERSION_REQ_MIN = 9
+PYTHON_MINOR_VERSION_REQ_MAX = 11
 
 # My PC had two cameras, back and front, so for front camera, the number was 1
 # Please edit this according to your system for the correct camera device number
