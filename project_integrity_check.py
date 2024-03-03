@@ -1,4 +1,4 @@
-from commandline_msg_highlighting import *
+from commandline_functions import *
 import os
 
 def check_python_version():

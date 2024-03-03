@@ -1,42 +1,20 @@
 import os
-import subprocess
 import sys
-from commandline_msg_highlighting import *
+from commandline_functions import *
 
 # ====================
 # Common functions
 # ====================
 
-def run_command(commands):
-    command = commands[0]
-    if len(commands) > 1:
-        for c in commands:
-            command += ' && ' + c
-    proc = subprocess.Popen(command, shell="True", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    result_code = proc.wait()
-    return result_code
-
-def run_command_and_show_output(commands):
-    command = commands[0]
-    if len(commands) > 1:
-        for c in commands:
-            command += ' && ' + c
-    proc = subprocess.Popen(command, shell="True", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    while proc.poll() is None:
-        print_in_italics(str(proc.stdout.readline()))
-    result_code = proc.wait()
-    return result_code
-
-def file_exist(file_name):
-    print(f"Checking {file_name} ... ", end='')
-    if os.path.isfile(file_name):
-        issue_success()
-    else:
-        issue_failure()
-        print_in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")
-
 def print_weird_behaviour(result_code):
     print_in_yellow(f"\nWeird result code running the script. Error code {result_code}")
+
+def is_python_3():
+    result_code = run_command(["python3 --version"])
+    if result_code == 0:
+        return True
+    else:
+        return False
 
 # ============================
 # Purpose specific functions
@@ -71,7 +49,7 @@ def check_python():
 
 def check_pip():
     print("Checking for Pip installation ... ", end='')
-    result_code = run_command(["pip3 --version"])
+    result_code = run_command(["pip --version"])
     if result_code == 0:
         issue_success()    
     elif result_code == 1:
@@ -90,7 +68,11 @@ def install_pip():
         print_in_red("Or download and install pip Python package installer manually!")
         exit()
     print("Installing Pip ... ", end='')
-    if run_command(["python3 get-pip.py"]) == 0:
+    if is_python_3() == True:
+        result_code = run_command(["python3 get-pip.py"])
+    else:
+        result_code = run_command(["python get-pip.py"])
+    if result_code == 0:
         issue_success()
     else:
         issue_failure()
@@ -108,7 +90,8 @@ def check_venv_package():
 
 def install_virtualenv():
     print("Installing virtualenv ... ", end='')
-    if run_command(["pip3 install virtualenv"]) == 0:
+    result_code = run_command(["pip install virtualenv"])
+    if result_code == 0:
         issue_success()
     else:
         issue_failure()
@@ -133,8 +116,12 @@ def create_virtual_environment():
     import os
     from global_variables import VIRTUAL_ENV_NAME
     print(f"Creating virtual environment named {VIRTUAL_ENV_NAME} ... ",end='')
-    command = f"python3 -m venv {VIRTUAL_ENV_NAME} "
-    if run_command([command]) == 0:
+    if is_python_3() == True:
+        command = f"python3 -m venv {VIRTUAL_ENV_NAME}"
+    else:
+        command = f"python -m venv {VIRTUAL_ENV_NAME}"
+    result_code = run_command_and_show_output([command])
+    if result_code == 0:
         issue_success()
     else:
         issue_failure()
@@ -158,16 +145,21 @@ def check_status_of_venv():
 def activate_venv_and_install_dependencies():
     from global_variables import VIRTUAL_ENV_NAME
     command1 = activate_venv_command()
-    command2 = "pip3 install -r requirements.txt"
-    command3 = f'python3 -m ipykernel install --user --name {VIRTUAL_ENV_NAME} --display "Python (my-project)"'
+    command2 = "pip install -r requirements.txt"
+    if is_python_3() == True:
+        command3 = f'python3 -m ipykernel install --user --name {VIRTUAL_ENV_NAME} --display "Python (my-project)"'
+    else:
+        command3 = f'python -m ipykernel install --user --name {VIRTUAL_ENV_NAME} --display "Python (my-project)"'
     print_in_italics(f"Activating {VIRTUAL_ENV_NAME} to install dependencies, using {command1} and also checking and installing dependencies ... ")
     warning_for_installing_dependencies()
-    if run_command_and_show_output([command1, command2, command3]) == 0:
+    commands = [command1, command2, command3]
+    result_code = run_command_and_show_output(commands)
+    if result_code == 0:
         issue_success()
     else:
         issue_failure()
         print_in_red(f"Sorry either couldn't activate the {VIRTUAL_ENV_NAME} environment to install dependencies")
-        print_in_italics("⚠️  Enable virtual environment manually and try restarting the script if this fails again on retry !")
+        print_in_italics("⚠️  Enable virtual environment manually and try restarting the script")
         print_in_bold(f"Command: {command1}")
         print_in_red(f"Or failed while installing dependencies if the Pip installation had started!")
         exit()
@@ -175,7 +167,9 @@ def activate_venv_and_install_dependencies():
 def install_dependencies():
     print("Installing/Updating dependencies from requirements.txt file, this may take a while. ")
     warning_for_installing_dependencies()
-    if run_command_and_show_output(["pip3 install -r requirements.txt"]) == 0:
+    command = "pip install -r requirements.txt"
+    result_code = run_command_and_show_output([command])
+    if result_code == 0:
         print_in_italics("================================================================")
         print("Installation completed ... ", end='')
         issue_success()
@@ -193,8 +187,7 @@ def main():
     command = activate_venv_command()
     print("Project prerequistes installation completed ", end='')
     issue_success()
-    if not check_status_of_venv():
-        print_in_bold(f"Activate the virtual virtual environment using {command} and run the project !")
+    print_in_bold(f"Activate the virtual virtual environment using {command} to run the project !")
     
 if __name__ == '__main__':
     main()
