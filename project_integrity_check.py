@@ -3,10 +3,11 @@ import os
 
 def check_python_version():
     import sys
+    from global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MAX, PYTHON_MINOR_VERSION_REQ_MIN
     print(f"Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]} detected ... ",end='')
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
-    if (major_version < 3) and (minor_version < 9 or minor_version > 11):
+    if (major_version < PYTHON_MAJOR_VERSION_REQ) and (minor_version < PYTHON_MINOR_VERSION_REQ_MIN or minor_version > PYTHON_MINOR_VERSION_REQ_MAX):
         issue_failure()
         print_in_red("REQUIREMENT: Python version >=3.9 <=3.11")
     else:
