@@ -21,7 +21,7 @@ def is_python_3():
 # ============================
 
 def activate_venv_command():
-    from global_variables import VIRTUAL_ENV_NAME
+    from user_defined_global_variables import VIRTUAL_ENV_NAME
     if os.name=='nt':
         return f'"{VIRTUAL_ENV_NAME}/Scripts/activate.bat"'
     else:
@@ -35,7 +35,7 @@ def warning_for_installing_dependencies():
     print_in_bold("================================================================")
 
 def check_python():
-    from global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
+    from user_defined_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
     print("Checking for Python installation ... ", end='')
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
@@ -99,7 +99,7 @@ def install_virtualenv():
         exit()
 
 def check_virtual_environment():
-    from global_variables import VIRTUAL_ENV_NAME
+    from user_defined_global_variables import VIRTUAL_ENV_NAME
     print(f"Checking if {VIRTUAL_ENV_NAME} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
         issue_success()
@@ -114,7 +114,7 @@ def check_virtual_environment():
 
 def create_virtual_environment():
     import os
-    from global_variables import VIRTUAL_ENV_NAME
+    from user_defined_global_variables import VIRTUAL_ENV_NAME
     print(f"Creating virtual environment named {VIRTUAL_ENV_NAME} ... ",end='')
     if is_python_3() == True:
         command = f"python3 -m venv {VIRTUAL_ENV_NAME}"
@@ -143,7 +143,7 @@ def check_status_of_venv():
         return True
 
 def activate_venv_and_install_dependencies():
-    from global_variables import VIRTUAL_ENV_NAME
+    from user_defined_global_variables import VIRTUAL_ENV_NAME
     command1 = activate_venv_command()
     command2 = "pip install -r requirements.txt"
     if is_python_3() == True:
