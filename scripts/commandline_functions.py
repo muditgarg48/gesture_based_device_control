@@ -8,10 +8,14 @@ def print_in_italics(message):
     print('\033[3m' + message + '\033[0m')
 
 def print_in_red(message):
-    print('\033[91m' + message + '\033[0m')
+    print('\033[31m' + message + '\033[0m')
+
+def print_in_green(message):
+    print('\033[32m' + message + '\033[0m')
 
 def print_in_yellow(message):
     print('\033[33m' + message + '\033[0m')
+
 
 def issue_success():
     import time

@@ -1,6 +1,6 @@
 import os
 import sys
-from commandline_functions import *
+from scripts.commandline_functions import *
 
 # ====================
 # Common functions
@@ -29,13 +29,13 @@ def activate_venv_command():
 
 def warning_for_installing_dependencies():
     print_in_yellow("This may take a while. Thank you for your patience!")
-    print_in_italics("⚠️  Data charges may apply  ⚠️")
+    print_in_yellow("⚠️  Data charges may apply  ⚠️")
     print_in_bold("================================================================")
     print_in_bold("\t\tPip installation outputs")
     print_in_bold("================================================================")
 
 def check_python():
-    from user_defined_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
+    from scripts.fixed_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
     print("Checking for Python installation ... ", end='')
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
@@ -113,7 +113,6 @@ def check_virtual_environment():
         activate_venv_and_install_dependencies()
 
 def create_virtual_environment():
-    import os
     from user_defined_global_variables import VIRTUAL_ENV_NAME
     print(f"Creating virtual environment named {VIRTUAL_ENV_NAME} ... ",end='')
     if is_python_3() == True:

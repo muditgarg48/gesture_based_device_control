@@ -1,6 +1,8 @@
 import numpy as np
+import pathlib
 
 file_name = "available_gestures.npy"
+file = pathlib.Path(f'./data/{file_name}')
 
 def reset_gesture_list():
     # Actions that we try to detect
@@ -9,12 +11,12 @@ def reset_gesture_list():
     print("Gesture list reset !!")
 
 def load_gestures():
-    gestures = np.load(file_name)
+    gestures = np.load(file)
     return gestures
 
 def save_gestures_to_file(actions):
     # Save the actions to a numpy array to the gestures file
-    np.save(file_name, actions)
+    np.save(file, actions)
 
 def show_available_gestures():
     gestures = load_gestures()

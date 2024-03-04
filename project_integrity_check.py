@@ -1,9 +1,9 @@
-from commandline_functions import *
+from scripts.commandline_functions import *
 import os
 
 def check_python_version():
     import sys
-    from fixed_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MAX, PYTHON_MINOR_VERSION_REQ_MIN
+    from scripts.fixed_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MAX, PYTHON_MINOR_VERSION_REQ_MIN
     print(f"Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]} detected ... ",end='')
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
@@ -38,8 +38,8 @@ def check_virtual_env():
 def check_all_packages():
     import importlib
     from user_defined_global_variables import VIRTUAL_ENV_NAME
-    from fixed_global_variables import REQUIRED_PACKAGES
-    print(f"Checking the availability of all packages from {VIRTUAL_ENV_NAME}")
+    from scripts.fixed_global_variables import REQUIRED_PACKAGES
+    print(f"Checking the availability of all packages in the system")
     print("=====================================================================")
     for package in REQUIRED_PACKAGES:
         package_id = package["id"]
