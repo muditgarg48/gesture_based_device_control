@@ -108,18 +108,6 @@ The _project_integrity_check.py_ script checks if the project workspace is ready
 ###### Note: 
 This script does not perform any task but only is responsible for doing checks. Run the _project_setup.py_ script again to redo the setup process if any checks fail.
 
-#### commandline_functions.py
-
-The _commandline_functions.py_ python file only contains some functions that help other scripts during their execution in the command line.
-
-#### global_variables.py
-
-The _global_variable.py_ python file contains all the necessary global variables in one place that are necessary for the project to run. There are two types of global variables in this file,
-    - the ones which need to be fixed and should be not touched
-    - the ones which are flexible for the user to change according to his needs
-
-###### Note: Be very careful while modifying contents of this file. Unnecessary alterations to this file might break the project.
-
 #### requirements.txt
 
 The _requirements.txt_ file contains all the dependencies that are required by this project to run successfully. This file is auto generated using Pip by the following command:
@@ -127,7 +115,52 @@ The _requirements.txt_ file contains all the dependencies that are required by t
 pip freeze > requirements.txt
 ```
 
-#### gesture_functions.py
+#### .gitignore
+
+The _.gitignore_ file has been custom created for this project to add all the files and folders that do not need to be tracked by Git. These include:
+- The training data folder
+- The virtual environment folder
+- The Python cache
+- The Pip installation python script which is downloaded if the user doesn't have Pip
+
+#### data/models/
+
+The _models_ folder is intended to be the one stop folder to save all the models that will be trained during the development of the project.
+
+#### data/training-action-data/
+
+The _training-action-data_ folder is intended to store all the videos broken down into frames stored in numpy arrays that will be used to train the model for recognising gestures stored in the _available_gestures.npy_
+
+#### data/available_gestures.npy
+
+The _available_gestures.npy_ file is the stored version of a Numpy array which stores all the gestures compatible by the project.
+
+#### global_variables/
+
+The _global_variables_ folder contains all the necessary global variables in one place that are necessary for the project to run. There are two types of global variables in this folder,
+    - _fixed.py_ are the ones which need to be fixed and should be not touched
+    - _user_specific.py_ are the ones which are flexible for the user to change according to his needs
+
+###### Note: Be very careful while modifying contents of _user_specific.py_ file. Unnecessary alterations not according to the default values to this file might break the project.
+
+#### /my-project-env
+
+The default virtual environment folder which stores all the packages locally which are required by the project without globally installing them in your system and slowing it down. To activate it, go to the Scripts folder inside it and run _activate.bat_ (for Windows) or _activate_ (for others)
+
+#### scripts/build_model.py
+
+The _build_model.py_ python file returns the Neural Network model that is used by this project to recognise gestures. 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEED TO COMPLETE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#### scripts/camera_feed_testing.py
+
+The _camera_feed_testing.py_ python script is used to test if the project is able to open up the camera in the user's system and access the camera feed.
+
+#### scripts/commandline_functions.py
+
+The _commandline_functions.py_ python file only contains some functions that help other scripts during their execution in the command line.
+
+#### scripts/gesture_functions.py
 
 The _gesture_functions.py_ python scripts contains all the necessary functions required for various actions related to the list of gestures compatible by this project for recognition. The script runs in an infinite loop to ask for which function you want to perform by a switch case till you stop it. These include:
 
@@ -141,33 +174,16 @@ The _gesture_functions.py_ python scripts contains all the necessary functions r
 * Show available gestures stored in _available_gestures.npy_
 * Add a gesture to _available_gestures.npy_ list.
 
-#### available_gestures.npy
+#### scripts/mediapipe_functions.py
 
-The _available_gestures.npy_ file is the stored version of a Numpy array which stores all the gestures compatible by the project.
+The _mediapipe_functions.py_ python script contains all the necessary functions developed by the usage of Mediapipe by Google to recognise keypoints in both the hands and draw them on the receiving camera feed.
 
-#### tensorboard_training_monitor.py
+#### scripts/tensorboard_training_monitor.py
 
 The _tensorboard_training_monitor.py_ Python script is responsible for activating the Tensorboard which is a interactive and useful dashboard that shows all the stats while training of the model.
 
-###### Note: This script should only be run when training the model or else it might break.
+###### Note: This script should be run before starting the training of the model.
 
-#### .gitignore
+#### tensorboard_logs/
 
-The _.gitignore_ file has been custom created for this project to add all the files and folders that do not need to be tracked by Git. These include:
-- The training data folder
-- The virtual environment folder
-- The Python cache
-- The Pip installation python script which is downloaded if the user doesn't have Pip
-
-#### /my-project-env
-
-The default virtual environment folder which stores all the packages locally which are required by the project without globally installing them in your system and slowing it down. To activate it, go to the Scripts folder inside it and run _activate.bat_ (for Windows) or _activate_ (for others)
-
-#### /models
-
-The _models_ folder is intended to be the one stop folder to save all the models that will be trained during the development of the project.
-
-#### /training-action-data
-
-The _training-action-data_ folder is intended to store all the videos broken down into frames that will be used to train the model for recognising gestures stored in the _available_gestures.npy_
-
+The _tensorboard_logs_ folder contains the autogenerated files by Tensorboard to monitor the training of any model using Tensorflow. These files are utilised by the _tensorboard_training_monitor.py_ python script in _scripts/_ folder to launch an interactive web application to monitor the training of the model.
