@@ -3,7 +3,7 @@ import os
 
 def check_python_version():
     import sys
-    from scripts.fixed_global_variables import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MAX, PYTHON_MINOR_VERSION_REQ_MIN
+    from global_variables.fixed import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MAX, PYTHON_MINOR_VERSION_REQ_MIN
     print(f"Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]} detected ... ",end='')
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
@@ -26,7 +26,7 @@ def check_status_of_venv():
     print_in_italics(f"Current virtual environment: {sys.prefix}")
 
 def check_virtual_env():
-    from scripts.user_defined_global_variables import VIRTUAL_ENV_NAME
+    from global_variables.user_specific import VIRTUAL_ENV_NAME
     print(f"Checking if {VIRTUAL_ENV_NAME} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
         issue_success()
@@ -37,8 +37,8 @@ def check_virtual_env():
 
 def check_all_packages():
     import importlib
-    from scripts.user_defined_global_variables import VIRTUAL_ENV_NAME
-    from scripts.fixed_global_variables import REQUIRED_PACKAGES
+    from global_variables.user_specific import VIRTUAL_ENV_NAME
+    from global_variables.fixed import REQUIRED_PACKAGES
     print(f"Checking the availability of all packages in the system")
     print("=====================================================================")
     for package in REQUIRED_PACKAGES:
@@ -53,7 +53,7 @@ def check_all_packages():
 
 def is_camera_feed_working():
     import cv2
-    from scripts.user_defined_global_variables import CAMERA_NUMBER
+    from global_variables.user_specific import CAMERA_NUMBER
     feed = cv2.VideoCapture(CAMERA_NUMBER)
     print("Checking if camera feed is accessible ... ", end='')
     while feed.isOpened():

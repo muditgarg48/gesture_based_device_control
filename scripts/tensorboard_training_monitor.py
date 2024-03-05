@@ -1,5 +1,5 @@
 import os
-from user_defined_global_variables import LOGGER_FOLDER_NAME
+from global_variables.user_specific import LOGGER_FOLDER_NAME
 
 def launch_tensorboard_monitor():
     # os.system('ls' if os.name == 'nt' else 'dir')
