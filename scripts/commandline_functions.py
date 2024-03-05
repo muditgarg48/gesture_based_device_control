@@ -59,3 +59,10 @@ def file_exist(file_name):
     else:
         issue_failure()
         print_in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")
+
+def is_dir_empty(dir_path):
+    dir = os.listdir(dir_path)
+    if len(dir) == 0:
+        return True, None
+    else:
+        return False, dir

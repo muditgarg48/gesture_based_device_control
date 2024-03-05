@@ -3,15 +3,20 @@ from user_defined_global_variables import EACH_VIDEO_FRAME_LENGTH
 from user_defined_global_variables import MODEL_SAVE_LOCATION
 
 colors = [(245,117,16), (117,245,16), (16,117,245)]
+model_extension = '.h5'
 
 def ask_for_model_name():
+    print_in_yellow("You do not need to mention the extension of the model!!")
     model_name = input(f"Enter the name of the existing model to be tested from {MODEL_SAVE_LOCATION}:")
+    if model_name[-3:] == model_extension:
+        print_in_yellow(f"Its useless to type {model_extension} as well!!")
+        model_name = model_name[:-3]
     return model_name
 
 def load_model(num_of_frames, num_of_features, num_of_actions, model_name):
     from scripts.build_model import build_neural_network
     model = build_neural_network(num_of_frames, num_of_features, num_of_actions)
-    model.load_weights((f'./{MODEL_SAVE_LOCATION}/{model_name}.h5'))
+    model.load_weights((f'./{MODEL_SAVE_LOCATION}/{model_name}{model_extension}'))
     return model
 
 def get_num_of_actions():
@@ -114,6 +119,16 @@ def test_from_camera_feed(model, actions):
         cv2.destroyAllWindows()
 
 def main(num_of_frames=EACH_VIDEO_FRAME_LENGTH, num_of_features=126):
+    do_we_have_models_to_test, existing_models = is_dir_empty(MODEL_SAVE_LOCATION)
+    if do_we_have_models_to_test == True:
+        print_in_red("You have no trained models currently stored in the project!")
+        print_in_bold("Train some models to test them!")
+        exit()
+    else:
+        print_in_green("Found exisiting models:")
+        for model in existing_models:
+            print_in_italics(model)
+        print()
     model_name = ask_for_model_name()
     print_in_bold("Fetching the gesture data from storage ...")
     print_in_bold("==========================================")
@@ -121,7 +136,7 @@ def main(num_of_frames=EACH_VIDEO_FRAME_LENGTH, num_of_features=126):
     print_in_italics("Fetched number of gestures stored!")
     actions = get_actions()
     print_in_italics("Fetched all the gestures stored!")
-    print_in_bold(f"Loading {model_name}.h5 from existing models in {MODEL_SAVE_LOCATION} ...")
+    print_in_bold(f"Loading {model_name}{model_extension} from existing models in {MODEL_SAVE_LOCATION} ...")
     print_in_bold("==========================================================================")
     model = load_model(num_of_frames, num_of_features, num_of_actions, model_name)
     print_in_bold("Opening testing camera feed ...")
