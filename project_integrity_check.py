@@ -26,7 +26,7 @@ def check_status_of_venv():
     print_in_italics(f"Current virtual environment: {sys.prefix}")
 
 def check_virtual_env():
-    from user_defined_global_variables import VIRTUAL_ENV_NAME
+    from scripts.user_defined_global_variables import VIRTUAL_ENV_NAME
     print(f"Checking if {VIRTUAL_ENV_NAME} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
         issue_success()
@@ -37,7 +37,7 @@ def check_virtual_env():
 
 def check_all_packages():
     import importlib
-    from user_defined_global_variables import VIRTUAL_ENV_NAME
+    from scripts.user_defined_global_variables import VIRTUAL_ENV_NAME
     from scripts.fixed_global_variables import REQUIRED_PACKAGES
     print(f"Checking the availability of all packages in the system")
     print("=====================================================================")
@@ -53,7 +53,7 @@ def check_all_packages():
 
 def is_camera_feed_working():
     import cv2
-    from user_defined_global_variables import CAMERA_NUMBER
+    from scripts.user_defined_global_variables import CAMERA_NUMBER
     feed = cv2.VideoCapture(CAMERA_NUMBER)
     print("Checking if camera feed is accessible ... ", end='')
     while feed.isOpened():

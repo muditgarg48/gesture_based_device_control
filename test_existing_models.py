@@ -1,6 +1,6 @@
 from scripts.commandline_functions import *
-from user_defined_global_variables import EACH_VIDEO_FRAME_LENGTH
-from user_defined_global_variables import MODEL_SAVE_LOCATION
+from scripts.user_defined_global_variables import EACH_VIDEO_FRAME_LENGTH
+from scripts.user_defined_global_variables import MODEL_SAVE_LOCATION
 
 colors = [(245,117,16), (117,245,16), (16,117,245)]
 model_extension = '.h5'
@@ -51,7 +51,7 @@ def test_from_camera_feed(model, actions):
     from scripts.mediapipe_functions import get_mediapipe_variables, mediapipe_detection, draw_styled_landmarks, extract_keypoints
     mp_holistic, _ = get_mediapipe_variables()
 
-    from user_defined_global_variables import WINDOW_NAME, CAMERA_FEED_EXIT_CHAR, CAMERA_NUMBER
+    from scripts.user_defined_global_variables import WINDOW_NAME, CAMERA_FEED_EXIT_CHAR, CAMERA_NUMBER
 
     feed = cv2.VideoCapture(CAMERA_NUMBER)
     # Set mediapipe model 
