@@ -14,6 +14,10 @@ def load_gestures():
     gestures = np.load(file)
     return gestures
 
+def get_num_of_gestures():
+    gestures = load_gestures()
+    return len(gestures)
+
 def save_gestures_to_file(actions):
     # Save the actions to a numpy array to the gestures file
     np.save(file, actions)
