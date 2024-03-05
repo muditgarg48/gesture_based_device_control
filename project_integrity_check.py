@@ -55,15 +55,27 @@ def is_camera_feed_working():
     import cv2
     from global_variables.user_specific import CAMERA_NUMBER
     feed = cv2.VideoCapture(CAMERA_NUMBER)
+    choice = input("Test camera feed automatically or manually (A/M): ").lower()
     print("Checking if camera feed is accessible ... ", end='')
-    while feed.isOpened():
-        return_value, frame = feed.read()
-        if frame is not None:
+    if choice == 'a':    
+        while feed.isOpened():
+            return_value, frame = feed.read()
+            if frame is not None and return_value == True:
+                issue_success()
+                break
+            else:
+                issue_failure()
+                print_in_red("Camera feed is not accessible. Try changing the camera number in global_variables/user-specific.py")
+    elif choice == 'm':
+        from scripts.camera_feed_testing import main
+        ret_code = main()
+        if ret_code == 0:
             issue_success()
-            break
         else:
             issue_failure()
-            print_in_red("Camera feed is not accesible. Try changing the camera number in global_variables.py")
+    else:
+        issue_warning()
+        print_in_yellow(f"\'{choice}\' is an invalid choice! Camera feed testing skipped!")
     feed.release()
 
 def main():

@@ -1,12 +1,11 @@
 import cv2
-from mediapipe_functions import *
-
+import scripts.mediapipe_functions as mf
 from global_variables.user_specific import CAMERA_NUMBER, WINDOW_NAME, CAMERA_FEED_EXIT_CHAR
 
-
 def main():
+    
     feed = cv2.VideoCapture(CAMERA_NUMBER)
-    mp_holistic, _ = get_mediapipe_variables()
+    mp_holistic, _ = mf.get_mediapipe_variables()
 
     # This might not run sometimes, theres no bug, it just needs to be run again if the window opens and closes
 
@@ -21,12 +20,12 @@ def main():
                 return 1
 
             # Make detections
-            image, results = mediapipe_detection(frame, holistic_model)
+            image, results = mf.mediapipe_detection(frame, holistic_model)
             # print(results)
 
             # Draw landmarks
             # draw_landmarks(image, results)
-            draw_styled_landmarks(image, results)
+            mf.draw_styled_landmarks(image, results)
 
             image = cv2.flip(image, 1)
             
