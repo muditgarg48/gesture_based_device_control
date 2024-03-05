@@ -1,4 +1,4 @@
-# GESTURE RECOGNITION BASED DEVICE CONTROL
+# GESTURE RECOGNITION-BASED DEVICE CONTROL
 
 ## INTRODUCTION 
 
@@ -34,7 +34,7 @@ This folder denotes the virtual environment of the project. This is usually gene
 
 ##### scripts/
 
-This folder contains all the scripts required by the project to do various tasks. Particular care has been taken to name them to describe their purpose. More detailed explanation in also present in this README.
+This folder contains all the scripts required to do various tasks. Particular care has been taken to name them to describe their purpose. A more detailed explanation is also present in this README.
 
 - [build_model.py](#scriptsbuild_modelpy)
 - [camera_feed_testing.py](#scriptscamera_feed_testingpy)
@@ -49,18 +49,18 @@ This folder contains all the files necessary for Tensorboard.
 
 ## PROJECT SETUP
 
-This project involves a lot of moving parts but fear not. The project also includes several Python scripts to make sure you dont have to setup anything manually if those scripts are run before starting the project.
+This project involves a lot of moving parts but fear not. The project also includes several Python scripts to ensure the user doesn't have to set up anything manually if those scripts are run before starting the project.
 
-Follow the following steps to setup the project suitable for running:
+Follow the following steps to set the project suitable for running:
 
 1. Download Python from [here](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe) and install it. 
     * Ensure that it is added to the environment variables. 
-    * The python setup has an option to check if you want the setup to directly add Python to the environment variables.
-    * Mediapipe, a Google developed library used in this project, requires:
+    * The Python setup has an option to check if you want the setup to directly add Python to the environment variables.
+    * Mediapipe, a Google-developed library used in this project, requires:
         - Python version 3.8 to 3.11
         - Pip version 20.3+
 
-2. Run _project_setup.py_ script by either one of this command in the terminal:
+2. Run the _project_setup.py_ script by either one of these commands in the terminal:
     ```
     python project_script.py
     ```
@@ -69,7 +69,7 @@ Follow the following steps to setup the project suitable for running:
     python3 project_script.py
     ```
 
-3. Activate the virtual environment using this command in the terminal. Note, the quotation marks (" ") are necessary because the command is running the virtual environment activatation script in another folder directly without traversing to it.
+3. Activate the virtual environment using this command in the terminal. Note, that the quotation marks (" ") are necessary because the command is running the virtual environment activation script in another folder directly without traversing to it.
     
     For Windows:
     ```
@@ -81,7 +81,7 @@ Follow the following steps to setup the project suitable for running:
     "{name of virtual env}/Scripts/activate"
     ```
 
-4. Run _project_integrity_check.py_ script to check the health of the project workspace and if it is ready to run the project, by either one of this command in the terminal:
+4. Run _project_integrity_check.py_ script to check the health of the project workspace and if it is ready to run the project, by either one of these commands in the terminal:
     ```
     python project_integrity_check.py
     ```
@@ -100,7 +100,7 @@ The _project_setup.py_ script handles all the project setup steps that are requi
 1. Checks for Python >=3.9 or <=3.11.
 2. Checks for the availability of _requirements.txt_ file to get the list of all the dependencies of this project.
 3. Checks for Pip installation. It downloads and installs Pip if not found. The link used by the script to download pip is [this](https://bootstrap.pypa.io/get-pip.py).
-4. Checks for the availability of _venv_ Python package for creating and usage of virtual environment for this project. It is installed using the following command globally if not found: 
+4. Checks for the availability of _venv_ Python package for creating and usage of a virtual environment for this project. It is installed using the following command globally if not found: 
     ```
     pip install venv
     ```
@@ -110,7 +110,7 @@ The _project_setup.py_ script handles all the project setup steps that are requi
         python -m venv {name of virtual env}
         ```
 
-6. Checks if the virtual environment is active or not. If yes, proceed to the next step. Else, it activates the virtual environment using:
+6. Check if the virtual environment is active or not. If yes, proceed to the next step. Else, it activates the virtual environment using:
 
     For Windows:
     ```
@@ -122,19 +122,19 @@ The _project_setup.py_ script handles all the project setup steps that are requi
     "{name of virtual env}/Scripts/activate"
     ```
 
-###### Note: The quotation marks (" ") are necessary because the command is running the virtual environment activatation script in another folder directly without traversing to it.
+###### Note: The quotation marks (" ") are necessary because the command is running the virtual environment activation script in another folder directly without traversing to it.
 
 7. Once the virtual environment is created and activated, it installs all the dependencies for the project using Pip and _requirements.txt_ using:
     ```
     pip install -r requirements.txt
     ```
 
-8. Once all the steps are completed, the script adds the project's virtual environment in the list of compatible kernels for the main Jupyter notebook to use.
+8. Once all the steps are completed, the script adds the project's virtual environment in the list of compatible kernels for the main Jupyter Notebook to use.
 
 ###### Note: 
 
-* The virtual environment is only activated for the duration of the script to install the dependencies. Please reactivate the virtual environment using the aforementioned command (also mentioned at the end of execution of this script) if you intend to run the project through the terminal.
-* Remember to change the kernel for the Jupyter notebook to the project's virtual environment. The option is available at the top right corner for Visual Studio Code once you open the notebook.
+* The virtual environment is only activated for the duration of the script to install the dependencies. Please reactivate the virtual environment using the aforementioned command (also mentioned at the end of the execution of this script) if you intend to run the project through the terminal.
+* Remember to change the kernel for the Jupyter Notebook to the project's virtual environment. The option is available at the top right corner for Visual Studio Code once you open the notebook.
 
 #### project_integrity_check.py
 
@@ -142,46 +142,46 @@ The _project_integrity_check.py_ script checks if the project workspace is ready
 
 1. Check Python version >=3.9 or <=3.11
 2. Check the availability of the virtual environment and if it is activated.
-3. Checks if all the necessary packages are accessible by the project.
-4. Checks if the camera feed is accessible by the OpenCV library for the project.
+3. Check if all the necessary packages are accessible by the project.
+4. Check if the camera feed is accessible by the OpenCV library for the project.
 
 ###### Note: 
 This script does not perform any task but only is responsible for doing checks. Run the _project_setup.py_ script again to redo the setup process if any checks fail.
 
 #### requirements.txt
 
-The _requirements.txt_ file contains all the dependencies that are required by this project to run successfully. This file is auto generated using Pip by the following command:
+The _requirements.txt_ file contains all the dependencies that are required by this project to run successfully. This file is auto-generated using Pip by the following command:
 ```
 pip freeze > requirements.txt
 ```
 
 #### .gitignore
 
-The _.gitignore_ file has been custom created for this project to add all the files and folders that do not need to be tracked by Git. These include:
+The _.gitignore_ file has been custom-created for this project to add all the files and folders that do not need to be tracked by Git. These include:
 - The training data folder
 - The virtual environment folder
 - The Python cache
-- The Pip installation python script which is downloaded if the user doesn't have Pip
+- The Pip installation Python script which is downloaded if the user doesn't have Pip
 
 #### data/models/
 
-The _models_ folder is intended to be the one stop folder to save all the models that will be trained during the development of the project.
+The _models_ folder is intended to be the one-stop folder to save all the models that will be trained during the development of the project.
 
 #### data/training-action-data/
 
-The _training-action-data_ folder is intended to store all the videos broken down into frames stored in numpy arrays that will be used to train the model for recognising gestures stored in the _available_gestures.npy_
+The _training-action-data_ folder is intended to store all the videos broken down into frames stored in NumPy arrays that will be used to train the model for recognizing gestures stored in the _available_gestures.npy_
 
 #### data/available_gestures.npy
 
-The _available_gestures.npy_ file is the stored version of a Numpy array which stores all the gestures compatible by the project.
+The _available_gestures.npy_ file is the stored version of a Numpy array which stores all the gestures compatible with the project.
 
 #### global_variables/
 
 The _global_variables_ folder contains all the necessary global variables in one place that are necessary for the project to run. There are two types of global variables in this folder,
-    - _fixed.py_ are the ones which need to be fixed and should be not touched
-    - _user_specific.py_ are the ones which are flexible for the user to change according to his needs
+    - _fixed.py_ are the ones that need to be fixed and should be not touched
+    - _user_specific.py_ are the ones that are flexible for the user to change according to his needs
 
-###### Note: Be very careful while modifying contents of _user_specific.py_ file. Unnecessary alterations not according to the default values to this file might break the project.
+###### Note: Be very careful while modifying contents of _user_specific.py_ file. Unnecessary alterations not according to the default values of this file might break the project.
 
 #### /my-project-env
 
@@ -189,12 +189,11 @@ The default virtual environment folder which stores all the packages locally whi
 
 #### scripts/build_model.py
 
-The _build_model.py_ python file returns the Neural Network model that is used by this project to recognise gestures. 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEED TO COMPLETE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+The _build_model.py_ python file returns the Neural Network model which is used by this project to recognize gestures. 
 
 #### scripts/camera_feed_testing.py
 
-The _camera_feed_testing.py_ python script is used to test if the project is able to open up the camera in the user's system and access the camera feed.
+The _camera_feed_testing.py_ python script is used to test if the project can open up the camera in the user's system and access the camera feed.
 
 #### scripts/commandline_functions.py
 
@@ -202,7 +201,7 @@ The _commandline_functions.py_ python file only contains some functions that hel
 
 #### scripts/gesture_functions.py
 
-The _gesture_functions.py_ python scripts contains all the necessary functions required for various actions related to the list of gestures compatible by this project for recognition. The script runs in an infinite loop to ask for which function you want to perform by a switch case till you stop it. These include:
+The _gesture_functions.py_ python scripts contain all the necessary functions required for various actions related to the list of gestures compatible with this project for recognition. The script runs in an infinite loop to ask for which function you want to perform by a switch case till you stop it. These include:
 
 * Reset the compatible gesture list to
     - Toggle Lights
@@ -216,11 +215,11 @@ The _gesture_functions.py_ python scripts contains all the necessary functions r
 
 #### scripts/mediapipe_functions.py
 
-The _mediapipe_functions.py_ python script contains all the necessary functions developed by the usage of Mediapipe by Google to recognise keypoints in both the hands and draw them on the receiving camera feed.
+The _mediapipe_functions.py_ python script contains all the necessary functions developed using Mediapipe by Google to recognize key points in both hands and draw them on the receiving camera feed.
 
 #### scripts/tensorboard_training_monitor.py
 
-The _tensorboard_training_monitor.py_ Python script is responsible for activating the Tensorboard which is a interactive and useful dashboard that shows all the stats while training of the model.
+The _tensorboard_training_monitor.py_ Python script is responsible for activating the Tensorboard which is an interactive and useful dashboard that shows all the stats while training of the model.
 
 ###### Note: This script should be run before starting the training of the model.
 
