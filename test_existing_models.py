@@ -6,10 +6,10 @@ colors = [(245,117,16), (117,245,16), (16,117,245)]
 model_extension = '.h5'
 
 def ask_for_model_name():
-    print_in_yellow("You do not need to mention the extension of the model!!")
-    model_name = input(f"Enter the name of the existing model to be tested from {MODEL_SAVE_LOCATION}:")
+    print(in_yellow("You do not need to mention the extension of the model!!"))
+    model_name = input(f"Enter the name of the existing model to be tested from {in_bold(MODEL_SAVE_LOCATION)}:")
     if model_name[-3:] == model_extension:
-        print_in_yellow(f"Its useless to type {model_extension} as well!!")
+        print(in_yellow(f"Its useless to type {in_bold(model_extension)} as well!!"))
         model_name = model_name[:-3]
     return model_name
 
@@ -63,18 +63,18 @@ def test_from_camera_feed(model, actions):
 
             # Exit camera feed if feed cannot be read
             if ret == False:
-                print_in_red("Camera feed not accesible")
+                print(in_red("Camera feed not accesible"))
                 break
 
             # Make detections
             image, results = mediapipe_detection(frame, holistic)
-            print(results)
+            # print(results)
             
             # Draw landmarks
             draw_styled_landmarks(image, results)
             
             # 2. Prediction logic
-            keypoints = extract_keypoints(results)
+            keypoints = extract_keypoints(results, should_print=False)
             sequence.append(keypoints)
             sequence = sequence[-30:]
 
@@ -82,7 +82,7 @@ def test_from_camera_feed(model, actions):
             
             if len(sequence) == 30:
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
-                print(actions[np.argmax(res)])
+                print(in_green(actions[np.argmax(res)]))
                 predictions.append(np.argmax(res))
                 
                 
@@ -123,26 +123,25 @@ def test_from_camera_feed(model, actions):
 def main(num_of_frames=EACH_VIDEO_FRAME_LENGTH, num_of_features=126):
     do_we_have_models_to_test, existing_models = is_dir_empty(MODEL_SAVE_LOCATION)
     if do_we_have_models_to_test == True:
-        print_in_red("You have no trained models currently stored in the project!")
-        print_in_bold("Train some models to test them!")
+        print(in_red("You have no trained models currently stored in the project!"))
+        print(in_bold("Train some models to test them!"))
         exit()
     else:
-        print_in_green("Found exisiting models:")
+        print(in_green("Found exisiting models:"))
         for model in existing_models:
-            print_in_italics(model)
-        print()
+            print(in_italics(model))
     model_name = ask_for_model_name()
-    print_in_bold("Fetching the gesture data from storage ...")
-    print_in_bold("==========================================")
+    print(in_bold("Fetching the gesture data from storage ..."))
+    print(in_bold("=========================================="))
     num_of_actions = get_num_of_actions()
-    print_in_italics("Fetched number of gestures stored!")
+    print(in_italics("Fetched number of gestures stored!"))
     actions = get_actions()
-    print_in_italics("Fetched all the gestures stored!")
-    print_in_bold(f"Loading {model_name}{model_extension} from existing models in {MODEL_SAVE_LOCATION} ...")
-    print_in_bold("==========================================================================")
+    print(in_italics("Fetched all the gestures stored!"))
+    print(in_bold(f"Loading {model_name}{model_extension} from existing models in {MODEL_SAVE_LOCATION} ..."))
+    print(in_bold("=========================================================================="))
     model = load_model(num_of_frames, num_of_features, num_of_actions, model_name)
-    print_in_bold("Opening testing camera feed ...")
-    print_in_bold("===============================")
+    print(in_bold("Opening testing camera feed ..."))
+    print(in_bold("==============================="))
     test_from_camera_feed(model, actions)
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ from scripts.commandline_functions import *
 # ====================
 
 def print_weird_behaviour(result_code):
-    print_in_yellow(f"\nWeird result code running the script. Error code {result_code}")
+    print(in_yellow(f"\nWeird result code running the script. Error code {result_code}"))
 
 def is_python_3():
     result_code = run_command(["python3 --version"])
@@ -28,11 +28,11 @@ def activate_venv_command():
         return f'"{VIRTUAL_ENV_NAME}/Scripts/activate"'
 
 def warning_for_installing_dependencies():
-    print_in_yellow("This may take a while. Thank you for your patience!")
-    print_in_yellow("⚠️  Data charges may apply  ⚠️")
-    print_in_bold("================================================================")
-    print_in_bold("\t\tPip installation outputs")
-    print_in_bold("================================================================")
+    print(in_yellow("This may take a while. Thank you for your patience!"))
+    print(in_yellow("⚠️  Data charges may apply  ⚠️"))
+    print(in_bold("================================================================"))
+    print(in_bold("\t\tPip installation outputs"))
+    print(in_bold("================================================================"))
 
 def check_python():
     from global_variables.fixed import PYTHON_MAJOR_VERSION_REQ, PYTHON_MINOR_VERSION_REQ_MIN, PYTHON_MINOR_VERSION_REQ_MAX
@@ -41,8 +41,9 @@ def check_python():
     minor_version = sys.version_info[1]
     if (major_version < PYTHON_MAJOR_VERSION_REQ) and (minor_version < PYTHON_MINOR_VERSION_REQ_MIN or minor_version > PYTHON_MINOR_VERSION_REQ_MAX):
         issue_failure()
-        print_in_red("System environment variables did not find Python version >=3.9 <=3.11")
-        print_in_italics("Mediapipe requires these python versions to work!")
+        print(in_red("System environment variables did not find "),end='')
+        print(in_bold(in_red(f"Python version >={PYTHON_MAJOR_VERSION_REQ}.{PYTHON_MINOR_VERSION_REQ_MIN} <={PYTHON_MAJOR_VERSION_REQ}.{PYTHON_MINOR_VERSION_REQ_MAX}")))
+        print(in_italics(in_red("Mediapipe requires these python versions to work!")))
         exit()
     else:
         issue_success()
@@ -64,8 +65,8 @@ def install_pip():
         issue_success()
     else:
         issue_failure()
-        print_in_red("Maybe check your internet connection!")
-        print_in_red("Or download and install pip Python package installer manually!")
+        print(in_red("Maybe check your internet connection!"))
+        print(in_red("Or download and install pip Python package installer manually!"))
         exit()
     print("Installing Pip ... ", end='')
     if is_python_3() == True:
@@ -76,7 +77,7 @@ def install_pip():
         issue_success()
     else:
         issue_failure()
-        print_in_red("Downloaded Pip but couldn't install for some reason. Try manually!")
+        print(in_red("Downloaded Pip but couldn't install for some reason. Try manually!"))
         exit()
 
 def check_venv_package():
@@ -95,26 +96,29 @@ def install_virtualenv():
         issue_success()
     else:
         issue_failure()
-        print_in_red("Failed to install virtualenv package with pip. Try again or do it manually!")
+        print(in_red("Failed to install virtualenv package with pip. Try again or do it manually!"))
         exit()
 
 def check_virtual_environment():
     from global_variables.user_specific import VIRTUAL_ENV_NAME
-    print(f"Checking if {VIRTUAL_ENV_NAME} virtual environment exists ... ",end='')
+    print(f"Checking if {in_italics(VIRTUAL_ENV_NAME)} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
         issue_success()
         if check_status_of_venv() == True:
+            print_step()
             install_dependencies()
         else:
+            print_step()
             activate_venv_and_install_dependencies()
     else:
         issue_warning()
+        print_step()
         create_virtual_environment()
         activate_venv_and_install_dependencies()
 
 def create_virtual_environment():
     from global_variables.user_specific import VIRTUAL_ENV_NAME
-    print(f"Creating virtual environment named {VIRTUAL_ENV_NAME} ... ",end='')
+    print(f"Creating virtual environment named {in_italics(VIRTUAL_ENV_NAME)} ... ",end='')
     if is_python_3() == True:
         command = f"python3 -m venv {VIRTUAL_ENV_NAME}"
     else:
@@ -124,8 +128,8 @@ def create_virtual_environment():
         issue_success()
     else:
         issue_failure()
-        print_in_red("Couldn't create a virtual environment. That is not supposed to NOT happen. Try manually using this following command and try again:")
-        print_in_bold(command)
+        print(in_red("Couldn't create a virtual environment. That is not supposed to NOT happen. Try manually using this following command and try again:"))
+        print(in_bold(command))
         exit()
 
 def check_status_of_venv():
@@ -133,12 +137,12 @@ def check_status_of_venv():
     print("Is the virtual environment activated ... ", end='')
     if sys.prefix == sys.base_prefix:
         issue_warning()
-        print_in_italics(f"Current virtual environment: {sys.base_prefix}")
+        print(in_italics(f"Current virtual environment: {in_bold(sys.base_prefix)}"))
         activate_venv_and_install_dependencies()
         return False
     else:
         issue_success()
-        print_in_italics(f"Virtual environment active: {sys.prefix}")
+        print(in_italics(f"Virtual environment active: {in_bold(sys.prefix)}"))
         return True
 
 def activate_venv_and_install_dependencies():
@@ -149,7 +153,7 @@ def activate_venv_and_install_dependencies():
         command3 = f'python3 -m ipykernel install --user --name {VIRTUAL_ENV_NAME} --display "Python (my-project)"'
     else:
         command3 = f'python -m ipykernel install --user --name {VIRTUAL_ENV_NAME} --display "Python (my-project)"'
-    print_in_italics(f"Activating {VIRTUAL_ENV_NAME} to install dependencies, using {command1} and also checking and installing dependencies ... ")
+    print(in_italics(f"Activating {in_bold(VIRTUAL_ENV_NAME)} to install dependencies using {in_bold(command1)}"))
     warning_for_installing_dependencies()
     commands = [command1, command2, command3]
     result_code = run_command_and_show_output(commands)
@@ -157,10 +161,10 @@ def activate_venv_and_install_dependencies():
         issue_success()
     else:
         issue_failure()
-        print_in_red(f"Sorry either couldn't activate the {VIRTUAL_ENV_NAME} environment to install dependencies")
-        print_in_italics("⚠️  Enable virtual environment manually and try restarting the script")
-        print_in_bold(f"Command: {command1}")
-        print_in_red(f"Or failed while installing dependencies if the Pip installation had started!")
+        print(in_red(f"Sorry either couldn't activate the {in_bold(VIRTUAL_ENV_NAME)} environment to install dependencies"))
+        print(in_red(in_italics("⚠️  Enable virtual environment manually and try restarting the script")))
+        print(in_red(in_bold(f"Command: {command1}")))
+        print(in_red(f"Or failed while installing dependencies if the Pip installation had started!"))
         exit()
 
 def install_dependencies():
@@ -169,24 +173,30 @@ def install_dependencies():
     command = "pip install -r requirements.txt"
     result_code = run_command_and_show_output([command])
     if result_code == 0:
-        print_in_italics("================================================================")
-        print("Installation completed ... ", end='')
-        issue_success()
+        print(in_italics("================================================================"))
+        print(in_green(in_bold("Installation completed !")))
     else:
-        print_in_italics("================================================================")
-        print("Installation interrupted ... ", end='')
+        print(in_italics("================================================================"))
+        print(in_red(in_bold("Installation interrupted ")), end='')
         issue_warning()
 
+def print_step():
+    print(underline_this(in_bold("Step"))+": ", end='')
+
 def main():
+    print_step()
     check_python()
+    print_step()
     file_exist("requirements.txt")
+    print_step()
     check_pip()
+    print_step()
     check_venv_package()
+    print_step()
     check_virtual_environment()
     command = activate_venv_command()
-    print("Project prerequistes installation completed ", end='')
-    issue_success()
-    print_in_bold(f"Activate the virtual virtual environment using {command} to run the project !")
+    print(in_green(in_bold("Project prerequistes installation completed !!")))
+    print(f"Activate the virtual virtual environment using {in_bold(command)} to run the project !")
     
 if __name__ == '__main__':
     main()

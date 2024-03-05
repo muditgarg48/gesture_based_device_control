@@ -1,21 +1,23 @@
 import subprocess
 import os
 
-def print_in_bold(message):
-    print('\033[1m' + message + '\033[0m')
+def in_bold(message):
+    return '\033[1m' + message + '\033[0m'
 
-def print_in_italics(message):
-    print('\033[3m' + message + '\033[0m')
+def in_italics(message):
+    return '\033[3m' + message + '\033[0m'
 
-def print_in_red(message):
-    print('\033[31m' + message + '\033[0m')
+def underline_this(message):
+    return '\033[4m' + message + '\033[0m'
 
-def print_in_green(message):
-    print('\033[32m' + message + '\033[0m')
+def in_red(message):
+    return '\033[31m' + message + '\033[0m'
 
-def print_in_yellow(message):
-    print('\033[33m' + message + '\033[0m')
+def in_green(message):
+    return '\033[32m' + message + '\033[0m'
 
+def in_yellow(message):
+    return '\033[33m' + message + '\033[0m'
 
 def issue_success():
     import time
@@ -48,7 +50,7 @@ def run_command_and_show_output(commands):
             command += ' && ' + c
     proc = subprocess.Popen(command, shell="True", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     while proc.poll() is None:
-        print_in_italics(str(proc.stdout.readline()))
+        print(in_italics(str(proc.stdout.readline())))
     result_code = proc.wait()
     return result_code
 
@@ -58,7 +60,7 @@ def file_exist(file_name):
         issue_success()
     else:
         issue_failure()
-        print_in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")
+        print(in_bold(in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")))
 
 def is_dir_empty(dir_path):
     dir = os.listdir(dir_path)

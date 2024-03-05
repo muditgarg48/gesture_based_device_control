@@ -53,29 +53,33 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
                              ) 
     
-def extract_keypoints(results):
+def extract_keypoints(results, should_print=True):
     # if results.pose_landmarks:
     #     pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten()
     # else:
-    #     print("No pose was detected")
+    #     if should_print:
+    #       print("No pose was detected")
     #     pose = np.zeros(132)
 
     # if results.face_landmarks:
     #     face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten()
     # else:
-    #     print("No face was detected")
+    #     if should_print:
+    #       print("No face was detected")
     #     face = np.zeros(1404)
 
     if results.left_hand_landmarks:
         left_hand = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten()
     else:
-        print("Left hand was not detected")
+        if should_print:
+            print("Left hand was not detected")
         left_hand = np.zeros(21*3)
 
     if results.right_hand_landmarks:
         right_hand = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten()
     else:
-        print("Right hand was not detected")
+        if should_print:
+            print("Right hand was not detected")
         right_hand = np.zeros(21*3)
 
     # return np.concatenate([pose, face, left_hand, right_hand])
