@@ -6,6 +6,46 @@ description
 
 ###### Note: The project was developed with Python v3.11.5 and Pip version 24.0. 
 
+## INDEX
+
+#### PROJECT SETUP [here](#project-setup)
+
+#### FILES AND FOLDERS DESCRIPTION [here](#files-and-folders-descriptions)
+
+- [project_setup.py](#project_setuppy)
+- [project_integrity_check.py](#project_integrity_checkpy)
+- [requirements.txt](#requirementstxt)
+
+##### data/
+
+This folder contains all the necessary data required by the project to run
+
+- [models/](#datamodels)
+- [training_action_data/](#datatraining-action-data)
+- [available_gestures.npy](#dataavailable_gesturesnpy)
+
+##### global_variables/ [here](#global_variables)
+
+This folder includes all the global variables used by various scripts within the project
+
+##### my-project-env/ [here](#my-project-env)
+
+This folder denotes the virtual environment of the project. This is usually generated for the user by the _project_setup.py_ script when the user runs it for the first time after cloning the repository.
+
+##### scripts/
+
+This folder contains all the scripts required by the project to do various tasks. Particular care has been taken to name them to describe their purpose. More detailed explanation in also present in this README.
+
+- [build_model.py](#scriptsbuild_modelpy)
+- [camera_feed_testing.py](#scriptscamera_feed_testingpy)
+- [commandline_functions.py](#scriptscommandline_functionspy)
+- [gestures_functons.py](#scriptsgesture_functionspy)
+- [mediapipe_functions.py](#scriptsmediapipe_functionspy)
+- [tensorboard_training_monitor.py](#scriptstensorboard_training_monitorpy)
+
+##### tensorboard-logs/ [here](#tensorboard_logs)
+
+This folder contains all the files necessary for Tensorboard.
 
 ## PROJECT SETUP
 
