@@ -1,6 +1,7 @@
 import numpy as np
 import pathlib
 from global_variables.user_specific import DATA_FOLDER
+from commandline_functions import *
 
 file_name = "available_gestures.npy"
 file = pathlib.Path(f'./{DATA_FOLDER}/{file_name}')
@@ -54,7 +55,7 @@ def main():
         print("2. Add new gesture")
         print("3. Reset gesture list")
         print("9. Exit program")
-        choice = int(input())
+        choice = int(input(in_bold("Choice: ")))
         if choice == 1:
             show_available_gestures()
         elif choice == 2:

@@ -12,4 +12,6 @@ def build_neural_network(num_of_frames, num_of_features, num_of_actions):
 
     model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
+    print(model.summary())
+
     return model

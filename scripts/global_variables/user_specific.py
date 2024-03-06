@@ -13,7 +13,7 @@ CAMERA_FEED_EXIT_CHAR = 'q'
 
 # Training data related settings
 DATA_FOLDER = 'data'
-TRAINING_DATA_FOLDER_NAME = 'data/training_action_data'
+TRAINING_DATA_FOLDER_NAME = 'training_action_data'
 MODEL_SAVE_LOCATION = 'data/models'
 NUMBER_OF_VIDEOS_FOR_EACH_GESTURE = 30
 EACH_VIDEO_FRAME_LENGTH = 30
