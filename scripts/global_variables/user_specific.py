@@ -14,9 +14,10 @@ CAMERA_FEED_EXIT_CHAR = 'q'
 # Training data related settings
 DATA_FOLDER = 'data'
 TRAINING_DATA_FOLDER_NAME = 'training_action_data'
-MODEL_SAVE_LOCATION = 'data/models'
+MODEL_SAVE_LOCATION = 'models'
 NUMBER_OF_VIDEOS_FOR_EACH_GESTURE = 30
 EACH_VIDEO_FRAME_LENGTH = 30
+TRAINING_TEST_SPLIT = 0.05
 
 # Wait time before every video collection for every action (frame 0 for every video)
 FRAME_COLLECTION_WAIT_TIME = 2000 #milliseconds

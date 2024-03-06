@@ -4,7 +4,7 @@ from global_variables.user_specific import DATA_FOLDER
 from commandline_functions import *
 
 file_name = "available_gestures.npy"
-file = pathlib.Path(f'./{DATA_FOLDER}/{file_name}')
+file = pathlib.Path(f'../{DATA_FOLDER}/{file_name}')
 
 def reset_gesture_list():
     # Actions that we try to detect
