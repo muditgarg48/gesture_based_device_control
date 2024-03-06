@@ -1,6 +1,6 @@
-from scripts.commandline_functions import *
-from scripts.global_variables.user_specific import EACH_VIDEO_FRAME_LENGTH
-from scripts.global_variables.user_specific import MODEL_SAVE_LOCATION
+from commandline_functions import *
+from global_variables.user_specific import EACH_VIDEO_FRAME_LENGTH
+from global_variables.user_specific import MODEL_SAVE_LOCATION
 
 colors = [(245,117,16), (117,245,16), (16,117,245)]
 model_extension = '.h5'
@@ -14,17 +14,17 @@ def ask_for_model_name():
     return model_name
 
 def load_model(num_of_frames, num_of_features, num_of_actions, model_name):
-    from scripts.build_model import build_neural_network
+    from build_model import build_neural_network
     model = build_neural_network(num_of_frames, num_of_features, num_of_actions)
     model.load_weights((f'./{MODEL_SAVE_LOCATION}/{model_name}{model_extension}'))
     return model
 
 def get_num_of_actions():
-    from scripts.gestures_functions import get_num_of_gestures
+    from gestures_functions import get_num_of_gestures
     return get_num_of_gestures()
 
 def get_actions():
-    from scripts.gestures_functions import load_gestures
+    from gestures_functions import load_gestures
     return load_gestures()
 
 def prob_viz(res, actions, input_frame, colors):
@@ -48,7 +48,7 @@ def test_from_camera_feed(model, actions):
     threshold = 0.85
 
     # Mediapipe variables
-    from scripts.mediapipe_functions import get_mediapipe_variables, mediapipe_detection, draw_styled_landmarks, extract_keypoints
+    from mediapipe_functions import get_mediapipe_variables, mediapipe_detection, draw_styled_landmarks, extract_keypoints
     mp_holistic, _ = get_mediapipe_variables()
 
     from global_variables.user_specific import WINDOW_NAME, CAMERA_FEED_EXIT_CHAR, CAMERA_NUMBER
