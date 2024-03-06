@@ -36,11 +36,12 @@ This folder denotes the virtual environment of the project. This is usually gene
 
 This folder contains all the scripts required to do various tasks. Particular care has been taken to name them to describe their purpose. A more detailed explanation is also present in this README.
 
-- [build_model.py](#scriptsbuild_modelpy)
 - [camera_feed_testing.py](#scriptscamera_feed_testingpy)
 - [commandline_functions.py](#scriptscommandline_functionspy)
+- [dataset_functions.py](#scriptsdataset_functionspy)
 - [gestures_functons.py](#scriptsgesture_functionspy)
 - [mediapipe_functions.py](#scriptsmediapipe_functionspy)
+- [model_functions.py](#scriptsmodel_functionspy)
 - [tensorboard_training_monitor.py](#scriptstensorboard_training_monitorpy)
 
 ##### tensorboard-logs/ [here](#tensorboard_logs)
@@ -187,10 +188,6 @@ The _global_variables_ folder contains all the necessary global variables in one
 
 The default virtual environment folder which stores all the packages locally which are required by the project without globally installing them in your system and slowing it down. To activate it, go to the Scripts folder inside it and run _activate.bat_ (for Windows) or _activate_ (for others)
 
-#### scripts/build_model.py
-
-The _build_model.py_ python file returns the Neural Network model which is used by this project to recognize gestures. 
-
 #### scripts/camera_feed_testing.py
 
 The _camera_feed_testing.py_ python script is used to test if the project can open up the camera in the user's system and access the camera feed.
@@ -198,6 +195,17 @@ The _camera_feed_testing.py_ python script is used to test if the project can op
 #### scripts/commandline_functions.py
 
 The _commandline_functions.py_ python file only contains some functions that help other scripts during their execution in the command line.
+
+#### scripts/dataset_functions.py
+
+The _dataset_functions.py_ python scripts contain all the necessary functions required for various actions related to the datasets stored in this project for training the models. The script runs in an infinite loop to ask for which function you want to perform by a switch case till you stop it. These include:
+
+* Print the dataset details which include:
+    - The gestures included
+    - The number of video folders present in the dataset available to train
+
+* Add onto the already present dataset and if not present, create one
+* Completely clean and erase the _training_action_data_ folder with _data_ folder
 
 #### scripts/gesture_functions.py
 
@@ -216,6 +224,14 @@ The _gesture_functions.py_ python scripts contain all the necessary functions re
 #### scripts/mediapipe_functions.py
 
 The _mediapipe_functions.py_ python script contains all the necessary functions developed using Mediapipe by Google to recognize key points in both hands and draw them on the receiving camera feed.
+
+#### scripts/model_functions.py
+
+The _model_functions_ python scripts contain all the necessary functions required for various actions related to the models created within this project for gesture recognition. The script runs in an infinite loop to ask for which function you want to perform by a switch case till you stop it. These include:
+
+* Print the list of all the pretrained models present in the storage
+* Train a new model based on the dataset present in the _data/training_action_data/_
+* Test an existing model from the _data/training_action_data/_
 
 #### scripts/tensorboard_training_monitor.py
 
