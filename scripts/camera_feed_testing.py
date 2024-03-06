@@ -1,5 +1,5 @@
 import cv2
-import scripts.mediapipe_functions as mf
+import mediapipe_functions as mf
 from global_variables.user_specific import CAMERA_NUMBER, WINDOW_NAME, CAMERA_FEED_EXIT_CHAR
 
 def main():
@@ -42,3 +42,6 @@ def main():
     cv2.destroyAllWindows()
 
     return 0
+
+if __name__ == '__main__':
+    main()

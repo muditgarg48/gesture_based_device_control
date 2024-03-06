@@ -1,6 +1,6 @@
 from scripts.commandline_functions import *
-from global_variables.user_specific import EACH_VIDEO_FRAME_LENGTH
-from global_variables.user_specific import MODEL_SAVE_LOCATION
+from scripts.global_variables.user_specific import EACH_VIDEO_FRAME_LENGTH
+from scripts.global_variables.user_specific import MODEL_SAVE_LOCATION
 
 colors = [(245,117,16), (117,245,16), (16,117,245)]
 model_extension = '.h5'
@@ -45,7 +45,7 @@ def test_from_camera_feed(model, actions):
     current_command = ''
     history = []
     predictions = []
-    threshold = 0.8
+    threshold = 0.85
 
     # Mediapipe variables
     from scripts.mediapipe_functions import get_mediapipe_variables, mediapipe_detection, draw_styled_landmarks, extract_keypoints
@@ -82,7 +82,7 @@ def test_from_camera_feed(model, actions):
             
             if len(sequence) == 30:
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
-                print(in_green(actions[np.argmax(res)]))
+                print(in_green(actions[np.argmax(res)]+"- Probability: "+str(round(np.max(res)*100,2))+"%"))
                 predictions.append(np.argmax(res))
                 
                 

@@ -12,6 +12,7 @@ WINDOW_NAME = 'Webcam feed'
 CAMERA_FEED_EXIT_CHAR = 'q'
 
 # Training data related settings
+DATA_FOLDER = 'data'
 TRAINING_DATA_FOLDER_NAME = 'data/training_action_data'
 MODEL_SAVE_LOCATION = 'data/models'
 NUMBER_OF_VIDEOS_FOR_EACH_GESTURE = 30
