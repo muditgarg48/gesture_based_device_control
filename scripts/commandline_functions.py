@@ -54,13 +54,33 @@ def run_command_and_show_output(commands):
     result_code = proc.wait()
     return result_code
 
-def file_exist(file_name):
-    print(f"Checking {file_name} ... ", end='')
+def file_exist(file_name, show_output=True):
+    if show_output:
+        print(f"Checking {file_name} ... ", end='')
     if os.path.isfile(file_name):
-        issue_success()
+        if show_output:
+            issue_success()
+        else:
+            return True
     else:
-        issue_failure()
-        print(in_bold(in_yellow(f"Cannot find {file_name}. Might result in unexpected behavior of code.")))
+        if show_output:
+            issue_failure()
+            print(in_bold(in_yellow(f"Cannot find {file_name}.")))
+        else:
+            return False
+
+def folder_exist(folder_name, show_output=True):
+    if show_output:
+        print(f"Checking existence of {folder_name} ... ",end='')
+    if os.path.isdir(folder_name):
+        if show_output:
+            issue_success()
+        return True
+    else:
+        if show_output:
+            issue_failure()
+            print(in_bold(in_red(f"Cannot find {folder_name}.")))
+        return False
 
 def is_dir_empty(dir_path):
     dir = os.listdir(dir_path)
