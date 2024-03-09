@@ -2,6 +2,7 @@
 my-project-env/
 training_action_data/
 __pycache__/
+tensorboard_logs/
 
 # Files to exclude
 get-pip.py
