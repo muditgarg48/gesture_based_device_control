@@ -28,6 +28,21 @@ def show_available_gestures():
     gestures = load_gestures()
     print(gestures)
 
+def delete_gesture():
+    gestures = load_gestures()
+    print("Old list of gestures: "+str(gestures))
+    del_gesture_index = int(input("Enter the gesture index to delete:"))
+    print(f"Want to delete {gestures[del_gesture_index]} ?")
+    gestures = np.delete(gestures, del_gesture_index)
+    should_save = input("Save (Y/N): ").upper()
+    if should_save == 'Y':
+        save_gestures_to_file(gestures)
+        print("Saved to "+file_name)
+        print("Remember to retrain the model and save the model !!")
+        print("New list of gestures: "+str(gestures))
+    else:
+        print("Did not save to the file "+file_name)
+
 def add_gesture():
     gestures = load_gestures()
     print("Old list of gestures: "+str(gestures))
@@ -53,7 +68,8 @@ def main():
         print("List of actions related to the gesture list: ")
         print("1. View all gestures")
         print("2. Add new gesture")
-        print("3. Reset gesture list")
+        print("3. Delete existing gesture")
+        print("4. Reset gesture list")
         print("9. Exit program")
         choice = int(input(in_bold("Choice: ")))
         if choice == 1:
@@ -61,6 +77,8 @@ def main():
         elif choice == 2:
             add_gesture()
         elif choice == 3:
+            delete_gesture()
+        elif choice == 4:
             reset_gesture_list()
         elif choice == 9:
             break
