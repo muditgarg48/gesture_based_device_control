@@ -89,7 +89,7 @@ def train_model_on_data():
     
     print("Creating model with given parameters ... ",end='')
     try:
-        model = build_neural_network(EACH_VIDEO_FRAME_LENGTH, 126, len(actions))
+        model = build_neural_network(num_of_frames=EACH_VIDEO_FRAME_LENGTH, num_of_actions=len(actions))
         issue_success()
     except:
         issue_failure()
@@ -101,7 +101,7 @@ def train_model_on_data():
     import os
     from keras.callbacks import TensorBoard
     from global_variables.user_specific import LOGGER_FOLDER_NAME
-    log_dir = os.path.join(LOGGER_FOLDER_NAME)
+    log_dir = os.path.join("..", LOGGER_FOLDER_NAME)
     tb_callback = TensorBoard(log_dir=log_dir)
     model.fit(X_train, y_train, epochs=NUM_OF_EPOCHS, callbacks=[tb_callback])
     model.summary()

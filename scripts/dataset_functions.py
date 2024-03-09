@@ -3,7 +3,7 @@ from global_variables.user_specific import *
 from gestures_functions import load_gestures
 
 def dataset_folder_exists():
-    if not folder_exist(os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)):
+    if not folder_exist(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)):
         return False
     else:
         return True
@@ -143,7 +143,7 @@ def actual_collection_of_videos(actions, num_of_videos, data_path, previous_maxs
 def collect_data():
     actions = load_gestures()
     # Path for exported data, numpy arrays
-    data_path = os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)
+    data_path = os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)
     # Thirty videos worth of data
     num_of_videos = NUMBER_OF_VIDEOS_FOR_EACH_GESTURE
     previous_maxs = create_folder_structure_for_new_data(actions, num_of_videos, data_path)
@@ -151,23 +151,23 @@ def collect_data():
     
 def print_current_dataset_details():
     if dataset_folder_exists():
-        dataset_is_empty, _ = is_dir_empty(os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME))
+        dataset_is_empty, _ = is_dir_empty(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME))
         if dataset_is_empty:
             print(in_yellow(f"Dataset folder found but no data found"))
             return
         for gesture in load_gestures():
-            if not folder_exist(os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture), show_output=False):
+            if not folder_exist(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture), show_output=False):
                 print(in_yellow(f"Dataset folder not found for {gesture}."))
             else:
-                file_exist(os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture, '0/0.npy'), show_output=False)
-                _, videos = is_dir_empty(os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture))
+                file_exist(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture, '0/0.npy'), show_output=False)
+                _, videos = is_dir_empty(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, gesture))
                 print(in_green(in_italics(f"{gesture} [{len(videos)} videos]")))
 
 def clean_dataset():
     if not dataset_folder_exists():
         print(in_red(f"There is no training dataset folder in the project!"))
         return
-    training_data_folder = os.path.join(DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)
+    training_data_folder = os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)
     is_empty, dir_content = is_dir_empty(training_data_folder)
     if is_empty:
         print(in_yellow(f"Training dataset at {training_data_folder} is already empty!"))
