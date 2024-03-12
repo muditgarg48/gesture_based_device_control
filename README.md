@@ -16,7 +16,7 @@ description
 - [project_integrity_check.py](#project_integrity_checkpy)
 - [requirements.txt](#requirementstxt)
 
-##### data/
+#### data/
 
 This folder contains all the necessary data required by the project to run
 
@@ -24,17 +24,21 @@ This folder contains all the necessary data required by the project to run
 - [training_action_data/](#datatraining-action-data)
 - [available_gestures.npy](#dataavailable_gesturesnpy)
 
-##### global_variables/ [here](#global_variables)
+#### global_variables/ [here](#global_variables)
 
 This folder includes all the global variables used by various scripts within the project
 
-##### my-project-env/ [here](#my-project-env)
+#### my-project-env/ [here](#my-project-env)
 
 This folder denotes the virtual environment of the project. This is usually generated for the user by the _project_setup.py_ script when the user runs it for the first time after cloning the repository.
 
-##### scripts/
+#### scripts/
 
-This folder contains all the scripts required to do various tasks. Particular care has been taken to name them to describe their purpose. A more detailed explanation is also present in this README.
+This folder contains all the scripts required to do various tasks. Particular care has been taken to name them to describe their purpose. A more detailed explanation is also present in this README. 
+
+###### Note:
+
+Remember to run the scripts from within the folder as they are configured to find the relative path that way. Running them from another location might affect the scripts' ability to search for necessary files and folders.
 
 - [camera_feed_testing.py](#scriptscamera_feed_testingpy)
 - [commandline_functions.py](#scriptscommandline_functionspy)
@@ -44,7 +48,7 @@ This folder contains all the scripts required to do various tasks. Particular ca
 - [model_functions.py](#scriptsmodel_functionspy)
 - [tensorboard_training_monitor.py](#scriptstensorboard_training_monitorpy)
 
-##### tensorboard-logs/ [here](#tensorboard_logs)
+#### tensorboard-logs/ [here](#tensorboard_logs)
 
 This folder contains all the files necessary for Tensorboard.
 
