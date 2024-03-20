@@ -43,21 +43,21 @@ def check_python():
     major_version = sys.version_info[0]
     minor_version = sys.version_info[1]
     if (major_version < PYTHON_MAJOR_VERSION_REQ) and (minor_version < PYTHON_MINOR_VERSION_REQ_MIN or minor_version > PYTHON_MINOR_VERSION_REQ_MAX):
-        issue_failure()
+        print(failure())
         print(in_red("System environment variables did not find "),end='')
         print(in_bold(in_red(f"Python version >={PYTHON_MAJOR_VERSION_REQ}.{PYTHON_MINOR_VERSION_REQ_MIN} <={PYTHON_MAJOR_VERSION_REQ}.{PYTHON_MINOR_VERSION_REQ_MAX}")))
         print(in_italics(in_red("Mediapipe requires these python versions to work!")))
         exit()
     else:
-        issue_success()
+        print(success())
 
 def check_pip():
     print("Checking for Pip installation ... ", end='')
     result_code = run_command(["pip --version"])
     if result_code == 0:
-        issue_success()    
+        print(success())   
     elif result_code == 1:
-        issue_warning()
+        print(warning())
         install_pip()
     else:
         print_weird_behaviour(result_code)
@@ -65,9 +65,9 @@ def check_pip():
 def install_pip():
     print("Downloading Pip ... ", end='')
     if run_command(["curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py"]) == 0:
-        issue_success()
+        print(success())
     else:
-        issue_failure()
+        print(failure())
         print(in_red("Maybe check your internet connection!"))
         print(in_red("Or download and install pip Python package installer manually!"))
         exit()
@@ -77,9 +77,9 @@ def install_pip():
     else:
         result_code = run_command(["python get-pip.py"])
     if result_code == 0:
-        issue_success()
+        print(success())
     else:
-        issue_failure()
+        print(failure())
         print(in_red("Downloaded Pip but couldn't install for some reason. Try manually!"))
         exit()
 
@@ -87,18 +87,18 @@ def check_venv_package():
     print("Checking for virtual env package installation ... ", end='')
     try:
         import virtualenv
-        issue_success()
+        print(success())
     except ImportError as e:
-        issue_warning()
+        print(warning())
         install_virtualenv()
 
 def install_virtualenv():
     print("Installing virtualenv ... ", end='')
     result_code = run_command(["pip install virtualenv"])
     if result_code == 0:
-        issue_success()
+        print(success())
     else:
-        issue_failure()
+        print(failure())
         print(in_red("Failed to install virtualenv package with pip. Try again or do it manually!"))
         exit()
 
@@ -106,11 +106,11 @@ def check_virtual_environment():
     from scripts.global_variables.user_specific import VIRTUAL_ENV_NAME
     print(f"Checking if {in_italics(VIRTUAL_ENV_NAME)} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
-        issue_success()
+        print(success())
         check_status_of_venv()
         print_step()
     else:
-        issue_warning()
+        print(warning())
         print_step()
         create_virtual_environment()
         activate_venv_and_install_dependencies()
@@ -124,9 +124,9 @@ def create_virtual_environment():
         command = f"python -m venv {VIRTUAL_ENV_NAME}"
     result_code = run_command_and_show_output([command])
     if result_code == 0:
-        issue_success()
+        print(success())
     else:
-        issue_failure()
+        print(failure())
         print(in_red("Couldn't create a virtual environment. That is not supposed to NOT happen. Try manually using this following command and try again:"))
         print(in_bold(command))
         exit()
@@ -135,11 +135,11 @@ def check_status_of_venv():
     import sys
     print("Is the virtual environment activated ... ", end='')
     if sys.prefix == sys.base_prefix:
-        issue_warning()
+        print(warning())
         print(in_italics(f"Current virtual environment: {in_bold(sys.base_prefix)}"))
         activate_venv_and_install_dependencies()
     else:
-        issue_success()
+        print(success())
         print(in_italics(f"Virtual environment active: {in_bold(sys.prefix)}"))
 
 def activate_venv_and_install_dependencies():
@@ -155,9 +155,9 @@ def activate_venv_and_install_dependencies():
     commands = [command1, command2, command3]
     result_code = run_command_and_show_output(commands)
     if result_code == 0:
-        issue_success()
+        print(success())
     else:
-        issue_failure()
+        print(failure())
         print(in_red(f"Sorry either couldn't activate the {in_bold(VIRTUAL_ENV_NAME)} environment to install dependencies"))
         try:
             print(in_red(in_italics("⚠️  Enable virtual environment manually and try restarting the script")))
@@ -178,7 +178,7 @@ def install_dependencies():
     else:
         print(in_italics("================================================================"))
         print(in_red(in_bold("Installation interrupted ")), end='')
-        issue_warning()
+        print(warning())
 
 def print_step():
     print(underline_this(in_bold("Step"))+": ", end='')

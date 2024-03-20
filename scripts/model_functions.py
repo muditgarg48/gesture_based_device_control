@@ -41,9 +41,9 @@ def train_model_on_data():
     print("Importing gestures from storage ...", end='')
     try:
         actions = load_gestures()
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_red("Something went wrong!"))
         exit()
     label_map = {label:num for num, label in enumerate(actions)}
@@ -60,9 +60,9 @@ def train_model_on_data():
                     video_window.append(res)
                 videos.append(video_window)
                 labels.append(label_map[action])
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_red("Something went wrong in accumulating all numpy arrays in one for every gesture!"))
         exit()
     X = np.array(videos)
@@ -81,18 +81,18 @@ def train_model_on_data():
     try:
         from global_variables.user_specific import TRAINING_TEST_SPLIT
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TRAINING_TEST_SPLIT)
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_red(f"Something went wrong trying to split the data into test dataset by {TRAINING_TEST_SPLIT*100}%"))
         exit()    
     
     print("Creating model with given parameters ... ",end='')
     try:
         model = build_neural_network(num_of_frames=EACH_VIDEO_FRAME_LENGTH, num_of_actions=len(actions))
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_red("Something went wrong trying to build the neural network!!"))
         exit()
 
@@ -111,9 +111,9 @@ def train_model_on_data():
     print(f"Saving the model into the {MODEL_SAVE_LOCATION} ... ")
     try:
         model.save(f'../{DATA_FOLDER}/{MODEL_SAVE_LOCATION}/{model_name}{model_extension}')
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_yellow(f"Couldn't save {model_name}{model_extension}, something terrible happened!"))
 
 def load_model(num_of_actions, model_name):
@@ -147,9 +147,9 @@ def test_from_camera_feed():
     print(in_bold(f"Loading {model_name}{model_extension} from existing models in {models_loc}"))
     try:
         model = load_model(len(actions), model_name)
-        issue_success()
+        print(success())
     except:
-        issue_failure()
+        print(failure())
         print(in_red("Something went wrong trying to load model from storage!"))
         exit()
 

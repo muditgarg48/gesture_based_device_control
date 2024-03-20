@@ -23,8 +23,8 @@ def create_folder_structure_for_new_data(actions, num_of_videos, data_path):
             try: 
                 os.makedirs(os.path.join(data_path, action, str(dirmax+sequence)))
             except:
-                issue_failure()
-    issue_success()
+                print(failure())
+    print(success())
     return dir_maxes
 
 def actual_collection_of_videos(actions, num_of_videos, data_path, previous_maxs):
@@ -74,7 +74,7 @@ def actual_collection_of_videos(actions, num_of_videos, data_path, previous_maxs
                     ret, frame = feed.read()
 
                     if ret != True:
-                        issue_failure()
+                        print(failure())
                         print(in_red(f"Something is wrong!. Camera feed not accessible"))
                         break
 
@@ -138,7 +138,7 @@ def actual_collection_of_videos(actions, num_of_videos, data_path, previous_maxs
         feed.release()
         cv2.destroyAllWindows()
     
-    issue_success()
+    print(success())
 
 def collect_data():
     actions = load_gestures()
@@ -177,10 +177,10 @@ def clean_dataset():
     try:
         import shutil
         shutil.rmtree(training_data_folder)
-        issue_success()
+        print(success())
         print(in_green("Training dataset folder removed !"))
     except:
-        issue_failure()
+        print(failure())
         print(in_red(f"There was a problem deleting the dataset folder. Try deleting {training_data_folder} manually in the project"))
 
 def main():

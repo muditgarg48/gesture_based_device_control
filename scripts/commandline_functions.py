@@ -19,29 +19,35 @@ def in_green(message):
 def in_yellow(message):
     return '\033[33m' + message + '\033[0m'
 
-def issue_success():
+def success():
     import time
     time.sleep(1)
     try:
-        print("✅")
+        print("✅", '\r')
+        message = "✅"
     except:
-        print("SUCCESS")
+        message = in_bold(in_green("SUCCESS"))
+    return message
 
-def issue_warning():
+def warning():
     import time
     time.sleep(1)
     try:
-        print("⚠️")
+        print("⚠️", '\r')
+        message = "⚠️"
     except:
-        print("WARNING")
+        message = in_bold(in_yellow("WARNING"))
+    return message
 
-def issue_failure():
+def failure():
     import time
     time.sleep(2)
     try:
-        print("❌")
+        print("❌", '\r')
+        message = "❌"
     except:
-        print("FAILURE")
+        message = in_bold(in_red("FAILURE"))
+    return message
 
 def run_command(commands):
     command = commands[0]
@@ -59,7 +65,7 @@ def run_command_and_show_output(commands):
             command += ' && ' + c
     proc = subprocess.Popen(command, shell="True", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     while proc.poll() is None:
-        line = str(proc.stdout.readline())
+        line = str(proc.stdout.readline()).strip()
         if line != "b''":
             print(in_italics(line))
     result_code = proc.wait()
@@ -70,12 +76,12 @@ def file_exist(file_name, show_output=True):
         print(f"Checking {file_name} ... ", end='')
     if os.path.isfile(file_name):
         if show_output:
-            issue_success()
+            print(success())
         else:
             return True
     else:
         if show_output:
-            issue_failure()
+            print(failure())
             print(in_bold(in_yellow(f"Cannot find {file_name}.")))
         else:
             return False
@@ -85,11 +91,11 @@ def folder_exist(folder_name, show_output=True):
         print(f"Checking existence of {folder_name} ... ",end='')
     if os.path.isdir(folder_name):
         if show_output:
-            issue_success()
+            print(success())
         return True
     else:
         if show_output:
-            issue_failure()
+            print(failure())
             print(in_bold(in_red(f"Cannot find {folder_name}.")))
         return False
 
