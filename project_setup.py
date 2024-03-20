@@ -107,11 +107,8 @@ def check_virtual_environment():
     print(f"Checking if {in_italics(VIRTUAL_ENV_NAME)} virtual environment exists ... ",end='')
     if os.path.isdir(VIRTUAL_ENV_NAME):
         issue_success()
-        if check_status_of_venv() == True:
-            print_step()
-        else:
-            print_step()
-            activate_venv_and_install_dependencies()
+        check_status_of_venv()
+        print_step()
     else:
         issue_warning()
         print_step()
@@ -141,11 +138,9 @@ def check_status_of_venv():
         issue_warning()
         print(in_italics(f"Current virtual environment: {in_bold(sys.base_prefix)}"))
         activate_venv_and_install_dependencies()
-        return False
     else:
         issue_success()
         print(in_italics(f"Virtual environment active: {in_bold(sys.prefix)}"))
-        return True
 
 def activate_venv_and_install_dependencies():
     from scripts.global_variables.user_specific import VIRTUAL_ENV_NAME
