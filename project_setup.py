@@ -29,7 +29,10 @@ def activate_venv_command():
 
 def warning_for_installing_dependencies():
     print(in_yellow("This may take a while. Thank you for your patience!"))
-    print(in_yellow("⚠️  Data charges may apply  ⚠️"))
+    try:
+        print(in_yellow("⚠️  Data charges may apply  ⚠️"))
+    except:
+        print(in_yellow("!!WARN!!  Data charges may apply  !!WARN!!"))
     print(in_bold("================================================================"))
     print(in_bold("\t\tPip installation outputs"))
     print(in_bold("================================================================"))
@@ -106,7 +109,6 @@ def check_virtual_environment():
         issue_success()
         if check_status_of_venv() == True:
             print_step()
-            install_dependencies()
         else:
             print_step()
             activate_venv_and_install_dependencies()
@@ -162,7 +164,10 @@ def activate_venv_and_install_dependencies():
     else:
         issue_failure()
         print(in_red(f"Sorry either couldn't activate the {in_bold(VIRTUAL_ENV_NAME)} environment to install dependencies"))
-        print(in_red(in_italics("⚠️  Enable virtual environment manually and try restarting the script")))
+        try:
+            print(in_red(in_italics("⚠️  Enable virtual environment manually and try restarting the script")))
+        except:
+            print(in_red(in_italics("WARNING!!  Enable virtual environment manually and try restarting the script")))
         print(in_red(in_bold(f"Command: {command1}")))
         print(in_red(f"Or failed while installing dependencies if the Pip installation had started!"))
         exit()
