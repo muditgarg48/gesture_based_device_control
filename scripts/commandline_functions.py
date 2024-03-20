@@ -59,7 +59,9 @@ def run_command_and_show_output(commands):
             command += ' && ' + c
     proc = subprocess.Popen(command, shell="True", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     while proc.poll() is None:
-        print(in_italics(str(proc.stdout.readline())))
+        line = str(proc.stdout.readline())
+        if line != "b''":
+            print(in_italics(line))
     result_code = proc.wait()
     return result_code
 
