@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gesture based device control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div id="heading">
+        <h1>Gesture based device control</h1>
+        <h4>Made by Mudit Garg</h4>
+    </div>
+    <div id="content">
+        <div class="collapsible">Initial Project Checks</div>
+        <div id="initialProjectSteps" >
+            <div id="buttons">
+                <button id="runSetup">Run Project Setup</button>
+                <button id="runIntegrityCheck">Run Project Health Check</button>
+                <button id="runCameraCheck">Run Camera Feed Check</button>
+            </div>
+            
+            <div id="scriptHelp">SCRIPT GUIDELINES HERE</div>
+            <div id="scriptOutput">YOUR SCRIPT OUTPUT WILL BE DISPLAYED HERE</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

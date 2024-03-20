@@ -1,0 +1,98 @@
+/* Common Functionality CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 98vw;
+    height: 98vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vh;
+}
+
+button {
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px lightblue;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.collapsible {
+    background-color: #eee;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 80vw;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Page Header */
+
+#heading {
+    width:80vw;
+    padding: 2%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Initial Project Checks */
+
+#initialProjectSteps {
+    /* padding: 1%; */
+    /* display: none; */
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.2s ease-out;
+}
+
+#buttons {
+    padding: 1vw;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid transparent;
+    border-radius: 20px;
+}
+
+#scriptHelp, #scriptOutput {
+    padding: 3vw;
+    margin: 1vw;
+    width: 72vw;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 10px lightblue;
+}

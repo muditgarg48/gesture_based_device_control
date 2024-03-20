@@ -1,6 +1,6 @@
 import cv2
-import mediapipe_functions as mf
-from global_variables.user_specific import CAMERA_NUMBER, WINDOW_NAME, CAMERA_FEED_EXIT_CHAR
+import scripts.mediapipe_functions as mf
+from scripts.global_variables.user_specific import CAMERA_NUMBER, WINDOW_NAME, CAMERA_FEED_EXIT_CHAR
 
 def main():
     
