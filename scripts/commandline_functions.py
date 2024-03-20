@@ -22,17 +22,26 @@ def in_yellow(message):
 def issue_success():
     import time
     time.sleep(1)
-    print("✅")
+    try:
+        print("✅")
+    except:
+        print("SUCCESS")
 
 def issue_warning():
     import time
     time.sleep(1)
-    print("⚠️")
+    try:
+        print("⚠️")
+    except:
+        print("WARNING")
 
 def issue_failure():
     import time
     time.sleep(2)
-    print("❌")
+    try:
+        print("❌")
+    except:
+        print("FAILURE")
 
 def run_command(commands):
     command = commands[0]
