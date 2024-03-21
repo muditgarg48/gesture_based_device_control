@@ -10,6 +10,22 @@
         <h4>Made by Mudit Garg</h4>
     </div>
     <div id="content">
+        <div class="collapsible">Project Global Variables</div>
+        <div id="globalVariablesForProject">
+            <div id="buttons">
+                <button id="getVariables">Get Variable values</button>
+            </div>
+            <div class="sectionHelp">
+                In the project root folder, navigate to <b>scripts => global_variables => user_defined.py</b> to change these values and click the button again to refresh.
+            </div>
+            <div id="varDisplay">
+                Virtual Environment Name: <i>{{global_variables['VIRTUAL_ENV_NAME']}}</i><br>
+                Camera Number: <i>{{global_variables['CAMERA_NUMBER']}}</i><br>
+                Camera Feed Window Name: <i>{{global_variables['WINDOW_NAME']}}</i><br>
+                Camera Exit Character: '<i>{{global_variables['CAMERA_FEED_EXIT_CHAR']}}</i>'<br>
+            </div>
+        </div>
+        <br>
         <div class="collapsible">Initial Project Checks</div>
         <div id="initialProjectSteps">
             <div id="buttons">
@@ -17,7 +33,7 @@
                 <button id="runIntegrityCheck">Run Project Health Check</button>
                 <button id="runCameraCheck">Run Camera Feed Check</button>
             </div>
-            <div id="scriptHelp">SCRIPT GUIDELINES HERE</div>
+            <div class="sectionHelp">SCRIPT GUIDELINES HERE</div>
             <div id="scriptOutput">YOUR SCRIPT OUTPUT WILL BE DISPLAYED HERE</div>
         </div>
         <br>

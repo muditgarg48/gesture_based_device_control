@@ -53,3 +53,8 @@ document.getElementById('runCameraCheck').addEventListener('click', function() {
     document.getElementById('scriptHelp').innerHTML = "This will attempt to run an instance of the camera feed. Do look out for any popup window with your camera feed.";
     runScript("run_camera_check")
 });
+document.getElementById('getVariables').addEventListener('click', function() {
+  fetch('/globalVarsRefresh').then(response => response.text()).then(data => {
+    document.getElementById('varDisplay').innerHTML = data;
+  })
+});

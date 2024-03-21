@@ -83,6 +83,20 @@ button:hover {
     box-shadow: 10px 10px lightblue;
 }
 
+/* Global Variables Display */
+
+#globalVariablesForProject {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.2s ease-out;
+}
+
+#varDisplay {
+    padding: 1vw;
+    margin: 1vw;
+    width: 72vw;
+}
+
 /* Initial Project Checks */
 
 #initialProjectSteps {
@@ -100,7 +114,7 @@ button:hover {
     border-radius: 20px;
 }
 
-#scriptHelp, #scriptOutput {
+#scriptOutput {
     padding: 3vw;
     margin: 1vw;
     width: 72vw;
@@ -108,10 +122,6 @@ button:hover {
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.4);
     box-shadow: 10px 10px lightblue;
-}
-
-#scriptHelp {
-    padding: 1vh 3vw;
 }
 
 /* Create new scenario */
