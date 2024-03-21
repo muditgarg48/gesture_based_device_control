@@ -11,15 +11,34 @@
     </div>
     <div id="content">
         <div class="collapsible">Initial Project Checks</div>
-        <div id="initialProjectSteps" >
+        <div id="initialProjectSteps">
             <div id="buttons">
                 <button id="runSetup">Run Project Setup</button>
                 <button id="runIntegrityCheck">Run Project Health Check</button>
                 <button id="runCameraCheck">Run Camera Feed Check</button>
             </div>
-            
             <div id="scriptHelp">SCRIPT GUIDELINES HERE</div>
             <div id="scriptOutput">YOUR SCRIPT OUTPUT WILL BE DISPLAYED HERE</div>
+        </div>
+        <br>
+        <div class="collapsible">Create new scenario</div>
+        <div id="createNewScenario">
+            <div class="sectionHelp">
+                This section helps you to create a folder structure for a new scenario for which you can collect and store new training data and then use it to train a new LSTM model which can be used for gesture recognition in further steps. The scenario name will be used as the folder name.
+            </div>
+            <form id="scenarioData" action="/create_new_scenario" method="POST">
+                <div id="scenario_name">
+                    <label for="scenario_name">Enter the scenario name: </label>
+                    <input input="text" name="scenario_name">
+                </div>
+                <br>
+                <div id="scenario_gestures">
+                    <label for="scenario_gestures">Enter gesture names in separate lines and <br>Keep the name lowercase<br>Try to have one word name or words separated by underscore only:</label>
+                    <textarea name="scenario_gestures"></textarea><br>
+                </div>
+                <br>
+                <button type="submit" id="submit_scenario">Create new scenario folder</button>
+            </form>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>

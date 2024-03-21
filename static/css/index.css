@@ -27,6 +27,8 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* Collapsing section mechanics and CSS */
+
 .collapsible {
     background-color: #eee;
     color: black;
@@ -35,7 +37,8 @@ button:hover {
     width: 80vw;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
+    text-decoration: underline;
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -68,11 +71,21 @@ button:hover {
     align-items: center;
 }
 
+/* Sections common CSS */
+
+.sectionHelp {
+    padding: 1vh 3vw;
+    margin: 1vw;
+    width: 72vw;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 10px lightblue;
+}
+
 /* Initial Project Checks */
 
 #initialProjectSteps {
-    /* padding: 1%; */
-    /* display: none; */
     max-height: 0;
     overflow-y: auto;
     transition: max-height 0.2s ease-out;
@@ -95,4 +108,59 @@ button:hover {
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.4);
     box-shadow: 10px 10px lightblue;
+}
+
+#scriptHelp {
+    padding: 1vh 3vw;
+}
+
+/* Create new scenario */
+
+#createNewScenario {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.2s ease-out;
+}
+
+#scenarioData {
+    padding: 1vh 3vw;
+}
+
+#scenarioData * {
+    display: flex;
+}
+
+#scenario_name {
+    height: 5vh;
+}
+
+#scenario_name label {
+    flex:1;
+    padding: 10px;
+}
+
+#scenario_name input {
+    flex:2;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#scenario_gestures {
+    height: 15vh;
+}
+
+#scenario_gestures label {
+    flex: 1;
+    padding: 10px;
+}
+
+#scenario_gestures textarea {
+    flex: 2;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#submit_scenario {
+    margin-left: auto;
+    margin-right: 5vw;
 }
