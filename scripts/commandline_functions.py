@@ -23,7 +23,7 @@ def success():
     import time
     time.sleep(1)
     try:
-        print("✅", '\r')
+        print("✅", end='\b\b')
         message = "✅"
     except:
         message = in_bold(in_green("SUCCESS"))
@@ -33,7 +33,7 @@ def warning():
     import time
     time.sleep(1)
     try:
-        print("⚠️", '\r')
+        print("⚠️", end='\b\b')
         message = "⚠️"
     except:
         message = in_bold(in_yellow("WARNING"))
@@ -43,7 +43,7 @@ def failure():
     import time
     time.sleep(2)
     try:
-        print("❌", '\r')
+        print("❌", end='\b\b')
         message = "❌"
     except:
         message = in_bold(in_red("FAILURE"))
