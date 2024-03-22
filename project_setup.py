@@ -180,6 +180,28 @@ def install_dependencies():
         print(in_red(in_bold("Installation interrupted ")), end='')
         print(warning())
 
+def add_project_to_path():
+    print("Adding the project to Python path so that every package and module is accessible ... ", end='')
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        # Adding to the device's Python path
+        venv_dir = sys.base_prefix
+        site_packages_dir = os.path.join(venv_dir, 'Lib', 'site-packages')
+        pth_file_path = os.path.join(site_packages_dir, 'gesture_based_device_control.pth')
+        with open(pth_file_path, 'w') as f:
+            f.write(root_dir)
+        # Adding to the virtual environment path
+        from scripts.global_variables.user_specific import VIRTUAL_ENV_NAME
+        venv_dir = os.path.join(VIRTUAL_ENV_NAME)
+        site_packages_dir = os.path.join(venv_dir, 'Lib', 'site-packages')
+        pth_file_path = os.path.join(site_packages_dir, 'gesture_based_device_control.pth')
+        with open(pth_file_path, 'w') as f:
+            f.write(root_dir)
+        print(success())
+    except:
+        print(failure())
+
+
 def print_step():
     print(underline_this(in_bold("Step"))+": ", end='')
 
@@ -192,9 +214,9 @@ def main():
     check_pip()
     print_step()
     check_venv_package()
-    print_step()
     check_virtual_environment()
     command = activate_venv_command()
+    add_project_to_path()
     print(in_green(in_bold("Project prerequistes installation completed !!")))
     print(f"Activate the virtual virtual environment using {in_bold(command)} to run the project !")
     
