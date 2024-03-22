@@ -1,7 +1,7 @@
 import numpy as np
 import pathlib
-from global_variables.user_specific import DATA_FOLDER
-from commandline_functions import *
+from scripts.global_variables.user_specific import DATA_FOLDER
+from scripts.commandline_functions import *
 
 file_name = "available_gestures.npy"
 file = pathlib.Path(f'../{DATA_FOLDER}/{file_name}')

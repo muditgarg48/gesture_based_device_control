@@ -1,6 +1,6 @@
-from commandline_functions import *
-from global_variables.user_specific import *
-from gestures_functions import load_gestures
+from scripts.commandline_functions import *
+from scripts.global_variables.user_specific import *
+from scripts.gestures_functions import load_gestures
 
 def dataset_folder_exists():
     if not folder_exist(os.path.join("..", DATA_FOLDER, TRAINING_DATA_FOLDER_NAME)):
@@ -31,7 +31,7 @@ def actual_collection_of_videos(actions, num_of_videos, data_path, previous_maxs
     
     import numpy as np
     import cv2
-    from mediapipe_functions import get_mediapipe_variables, draw_styled_landmarks, mediapipe_detection, extract_keypoints
+    from scripts.mediapipe_functions import get_mediapipe_variables, draw_styled_landmarks, mediapipe_detection, extract_keypoints
 
     feed = cv2.VideoCapture(CAMERA_NUMBER)
     mp_holistic, _ = get_mediapipe_variables()
@@ -184,7 +184,7 @@ def clean_dataset():
         print(in_red(f"There was a problem deleting the dataset folder. Try deleting {training_data_folder} manually in the project"))
 
 def main():
-    from global_variables.user_specific import NUMBER_OF_VIDEOS_FOR_EACH_GESTURE
+    from scripts.global_variables.user_specific import NUMBER_OF_VIDEOS_FOR_EACH_GESTURE
     import os
     choice = 0
     while(choice!=9):

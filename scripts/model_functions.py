@@ -1,5 +1,5 @@
-from commandline_functions import *
-from global_variables.user_specific import DATA_FOLDER, MODEL_SAVE_LOCATION, EACH_VIDEO_FRAME_LENGTH
+from scripts.commandline_functions import *
+from scripts.global_variables.user_specific import DATA_FOLDER, MODEL_SAVE_LOCATION, EACH_VIDEO_FRAME_LENGTH
 import os
 models_loc = os.path.join('..', DATA_FOLDER, MODEL_SAVE_LOCATION)
 colors = [(245,117,16), (117,245,16), (16,117,245)]
@@ -33,8 +33,8 @@ def train_model_on_data():
     import numpy as np
     from sklearn.model_selection import train_test_split
     from keras.utils import to_categorical
-    from gestures_functions import load_gestures
-    from global_variables.user_specific import DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, EACH_VIDEO_FRAME_LENGTH
+    from scripts.gestures_functions import load_gestures
+    from scripts.global_variables.user_specific import DATA_FOLDER, TRAINING_DATA_FOLDER_NAME, EACH_VIDEO_FRAME_LENGTH
 
     print(in_yellow("Make sure to start the "+in_bold("tensorboard_training_monitor.py")+" script in a separate terminal to have an interactive monitoring of your training progress"))
 
@@ -100,14 +100,14 @@ def train_model_on_data():
     from global_variables.user_specific import NUM_OF_EPOCHS
     import os
     from keras.callbacks import TensorBoard
-    from global_variables.user_specific import LOGGER_FOLDER_NAME
+    from scripts.global_variables.user_specific import LOGGER_FOLDER_NAME
     log_dir = os.path.join("..", LOGGER_FOLDER_NAME)
     tb_callback = TensorBoard(log_dir=log_dir)
     model.fit(X_train, y_train, epochs=NUM_OF_EPOCHS, callbacks=[tb_callback])
     model.summary()
 
     model_name = ask_for_model_name()
-    from global_variables.user_specific import MODEL_SAVE_LOCATION
+    from scripts.global_variables.user_specific import MODEL_SAVE_LOCATION
     print(f"Saving the model into the {MODEL_SAVE_LOCATION} ... ")
     try:
         model.save(f'../{DATA_FOLDER}/{MODEL_SAVE_LOCATION}/{model_name}{model_extension}')
@@ -137,7 +137,7 @@ def test_from_camera_feed():
         print(in_red("You do not have any models to test, I'm sorry !"))
         return
     
-    from gestures_functions import load_gestures
+    from scripts.gestures_functions import load_gestures
     actions = load_gestures()
     print(in_italics("Fetched gestures from storage!"))
     
@@ -167,7 +167,7 @@ def test_from_camera_feed():
     from mediapipe_functions import get_mediapipe_variables, mediapipe_detection, draw_styled_landmarks, extract_keypoints
     mp_holistic, _ = get_mediapipe_variables()
 
-    from global_variables.user_specific import WINDOW_NAME, CAMERA_FEED_EXIT_CHAR, CAMERA_NUMBER
+    from scripts.global_variables.user_specific import WINDOW_NAME, CAMERA_FEED_EXIT_CHAR, CAMERA_NUMBER
 
     feed = cv2.VideoCapture(CAMERA_NUMBER)
     # Set mediapipe model 
