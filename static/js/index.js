@@ -42,7 +42,7 @@ function runScript(scriptName) {
 }
 
 document.getElementById('runSetup').addEventListener('click', function() {
-    document.getElementById('scriptHelp').innerHTML = "This might take a while depending on if this is the first time. Thank you for your patience";
+    document.getElementById('scriptHelp').innerHTML = "This might take a while. Thank you for your patience";
     runScript("run_project_setup")
 });
 document.getElementById('runIntegrityCheck').addEventListener('click', function() {
