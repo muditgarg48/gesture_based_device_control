@@ -2,7 +2,8 @@
 
 ## INTRODUCTION 
 
-description
+My final year project that I am working on, is Gesture recognition based smart device control like IoT devices that we use in our daily lives. Hand gestures are the key medium for non-verbal communication used by communities which are challenged in terms of speech or hearing. It acts as a medium for their interaction with the world. And in this ever-evolving landscape of technology, making the technology more inclusive and accessible to these diverse user groups remains paramount. This project aims to contribute to this area of technology by focusing on the development of a system that will be designed to recognise gestures and their corresponding commands for the purpose of controlling various IoT devices that people use in their day-to-day life. This endeavour will contribute to the broader goal of enhancing accessibility of this technology to a wider audience and bridge the gap between the people who rely on hand gestures as their primary mode of communication  and the technology they use. This project gives the user, the ability to enter their own set of gestures that they want the system (or the trained neural network in this case) to recognise and their corresponding commands. Then the user is given the opportunity to use their device’s camera feed to collect the training data for these gestures. This data is then processed to churn out the useful data, which is the movement of the key points in their hands and is converted to a Numpy array, which is then finally provided to the Long Short-Term Memory (LSTM) neural net to train on. The user then establishes connection with the desired IoT device and then uses their device’s camera feed and the trained neural network to recognise the gestures (more specifically, the commands) which is then sent to the IoT device using the local network.
+
 
 ###### Note: The project was developed with Python v3.11.5 and Pip version 24.0. 
 
